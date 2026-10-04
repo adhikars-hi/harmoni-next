@@ -1,4 +1,4 @@
-# Sonata Harmoni.AI — Landing Page (Next.js)
+# Next js project — Landing Page (Next.js)
 
 Single-page marketing site for **Sonata Harmoni.AI**, built with **Next.js (App Router)**, **React 19** and **Framer Motion**. It is a straight port of the earlier Vite + React project: same sections, styles, animations and assets, now running on Next.js.
 
