@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harmoni Next.js — Structure, Build &amp; Deployment Guide</title>
+<style>
+  :root {
+    --bg: #ffffff; --panel: #f6f7f9; --text: #1b1f27; --muted: #5b6472; --line: #e2e5ea;
+    --accent: #3b5bdb; --accent-soft: #e8edff; --code-bg: #0f1420; --code-text: #e6e9f2;
+    --ok: #1f8a4c; --warn: #b4690e; --warn-bg: #fff4e0; --ok-bg: #e5f6ec;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12151c; --panel: #1a1f29; --text: #e6e9f2; --muted: #9aa4b5; --line: #2a303c;
+      --accent: #8ba2ff; --accent-soft: #212a4a; --code-bg: #0a0d14; --code-text: #e6e9f2;
+      --ok: #55c98a; --warn: #f0a847; --warn-bg: #33270f; --ok-bg: #123022;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif; }
+  .layout { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+  nav { position: sticky; top: 0; align-self: start; height: 100vh; overflow-y: auto;
+    padding: 28px 20px; border-right: 1px solid var(--line); background: var(--panel); }
+  nav .brand { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+  nav .sub { color: var(--muted); font-size: 13px; margin-bottom: 20px; }
+  nav a { display: block; padding: 6px 10px; margin: 1px 0; border-radius: 6px;
+    color: var(--muted); text-decoration: none; font-size: 14px; }
+  nav a:hover { background: var(--accent-soft); color: var(--accent); }
+  main { max-width: 900px; padding: 48px 40px 96px; }
+  h1 { font-size: 34px; line-height: 1.2; margin: 0 0 8px; }
+  .lede { color: var(--muted); font-size: 18px; margin: 0 0 32px; }
+  h2 { font-size: 24px; margin: 56px 0 12px; padding-top: 16px; border-top: 1px solid var(--line); }
+  h3 { font-size: 18px; margin: 28px 0 8px; }
+  p, li { margin: 8px 0; }
+  code { font: 13.5px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--accent-soft);
+    color: var(--accent); padding: 2px 6px; border-radius: 4px; }
+  pre { background: var(--code-bg); color: var(--code-text); padding: 16px 18px; border-radius: 10px;
+    overflow-x: auto; font: 13.5px/1.55 ui-monospace, SFMono-Regular, Menlo, monospace; margin: 14px 0; }
+  pre code { background: none; color: inherit; padding: 0; font-size: inherit; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 14.5px; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { background: var(--panel); font-weight: 600; }
+  .tag { display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 99px; }
+  .yes { background: var(--ok-bg); color: var(--ok); }
+  .no { background: var(--panel); color: var(--muted); border: 1px solid var(--line); }
+  .opt { background: var(--warn-bg); color: var(--warn); }
+  .callout { padding: 14px 18px; border-radius: 10px; margin: 18px 0; border-left: 4px solid var(--accent);
+    background: var(--accent-soft); }
+  .callout.warn { border-color: var(--warn); background: var(--warn-bg); }
+  .callout.ok { border-color: var(--ok); background: var(--ok-bg); }
+  .callout p { margin: 4px 0; }
+  .flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 16px 0; }
+  .flow span { background: var(--panel); border: 1px solid var(--line); padding: 8px 14px;
+    border-radius: 8px; font-size: 14px; }
+  .flow i { color: var(--muted); font-style: normal; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .card { border: 1px solid var(--line); border-radius: 10px; padding: 4px 18px 14px; background: var(--panel); }
+  footer { margin-top: 64px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); padding-top: 16px; }
+  @media (max-width: 860px) {
+    .layout { grid-template-columns: 1fr; }
+    nav { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+    main { padding: 28px 16px 64px; }
+    .cols { grid-template-columns: 1fr; }
+    table { display: block; overflow-x: auto; }
+  }
+  @media print {
+    nav { display: none; } .layout { display: block; } main { max-width: none; padding: 0; }
+    pre { white-space: pre-wrap; }
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+
+<nav>
+  <div class="brand">Harmoni Next.js</div>
+  <div class="sub">Team reference guide</div>
+  <a href="#overview">1. Overview</a>
+  <a href="#stack">2. Tech stack</a>
+  <a href="#source">3. Source structure</a>
+  <a href="#routing">4. Routing</a>
+  <a href="#rendering">5. Rendering (SSR)</a>
+  <a href="#commands">6. Run &amp; build</a>
+  <a href="#next-folder">7. The .next folder</a>
+  <a href="#manifests">8. Manifest files</a>
+  <a href="#deploy">9. Deploying to a server</a>
+  <a href="#verify">10. Verifying SSR</a>
+  <a href="#extend">11. Extending the app</a>
+  <a href="#gotchas">12. Gotchas &amp; checklist</a>
+</nav>
+
+<main>
+<h1>Next.js Application Guide</h1>
+<p class="lede">How the Harmoni.AI landing page is structured, what <code>npm run build</code> produces, how routing and server-side rendering work, and what to move to a server.</p>
+
+<!-- ============ 1 ============ -->
+<h2 id="overview">1. Overview</h2>
+<p>This project is a <strong>Next.js 16 App Router</strong> application written in React 19. It is the Sonata Harmoni.AI marketing landing page: one page made of stacked, animated sections (Navbar, Hero, Product Stack, Testimonials, …, Footer).</p>
+<p>The home page is configured for <strong>Server-Side Rendering (SSR) on every request</strong>. The server produces complete HTML for each visit; the browser then loads JavaScript to <em>hydrate</em> that HTML and run the Framer Motion animations.</p>
+
+<div class="flow">
+  <span>Browser requests <code>/</code></span><i>→</i>
+  <span>Node server renders React to HTML</span><i>→</i>
+  <span>HTML sent (content visible immediately)</span><i>→</i>
+  <span>JS bundles load &amp; hydrate</span><i>→</i>
+  <span>Animations / interactivity active</span>
+</div>
+
+<!-- ============ 2 ============ -->
+<h2 id="stack">2. Tech stack</h2>
+<table>
+<tr><th>Piece</th><th>Version</th><th>Role</th></tr>
+<tr><td>Next.js</td><td>^16.3.8</td><td>Framework: routing, SSR, bundling (Turbopack), production server</td></tr>
+<tr><td>React / React DOM</td><td>^19.2.8</td><td>UI library</td></tr>
+<tr><td>Framer Motion</td><td>^13.4.4</td><td>Scroll and entrance animations</td></tr>
+<tr><td>@fontsource/inter, roboto-mono</td><td>^5.3.0</td><td>Fonts bundled locally (no Google Fonts request at runtime)</td></tr>
+<tr><td>ESLint + eslint-config-next</td><td>^9 / ^16</td><td>Linting (<code>npm run lint</code>)</td></tr>
+<tr><td>Node.js</td><td>≥ 20.9.0</td><td>Required runtime (set in <code>engines</code>)</td></tr>
+</table>
+
+<!-- ============ 3 ============ -->
+<h2 id="source">3. Source structure</h2>
+<pre><code>harmoni-next/
+├── package.json          scripts + dependencies
+├── package-lock.json     exact dependency versions (commit this)
+├── next.config.mjs       Next.js configuration
+├── jsconfig.json         "@/..." import alias → src/
+├── eslint.config.mjs     lint rules
+├── .env.example          template for environment variables
+├── public/               static files served as-is at "/" (videos, images, favicon)
+└── src/
+    ├── app/              ROUTING lives here (App Router)
+    │   ├── layout.jsx    root layout: &lt;html&gt;, fonts, CSS, metadata
+    │   ├── providers.jsx client-side providers (Framer Motion config)
+    │   └── page.jsx      the "/" route
+    ├── sections/         page sections (Hero, Navbar, Footer, Testimonials …)
+    ├── components/       shared pieces (Dust canvas, Marquee, KeyedVideo, ui, logos)
+    └── styles/           globals.css → custom.css → mobile.css (order matters)</code></pre>
+
+<table>
+<tr><th>Folder</th><th>Purpose</th></tr>
+<tr><td><code>src/app/</code></td><td>Anything here with a special file name (<code>page</code>, <code>layout</code>, <code>route</code>) becomes part of the URL structure.</td></tr>
+<tr><td><code>src/sections/</code></td><td>One file per page section. Plain React components imported by <code>page.jsx</code>; they do <strong>not</strong> create routes.</td></tr>
+<tr><td><code>src/components/</code></td><td>Reusable building blocks and hooks (e.g. <code>useIsMobile</code>).</td></tr>
+<tr><td><code>public/</code></td><td>Referenced by absolute path: <code>public/favicon.svg</code> → <code>/favicon.svg</code>.</td></tr>
+</table>
+
+<h3>Server vs Client Components</h3>
+<ul>
+  <li><code>layout.jsx</code> and <code>page.jsx</code> are <strong>Server Components</strong> (default): they run only on the server.</li>
+  <li>Each section starts with <code>'use client'</code> because it uses Framer Motion, hooks, or browser APIs. <strong>Client Components are still server-rendered for the first HTML</strong>, then hydrated in the browser.</li>
+  <li>Browser-only code (<code>window</code>, <code>matchMedia</code>, <code>document</code>) is kept inside <code>useEffect</code> or <code>useSyncExternalStore</code> so it never runs during server rendering.</li>
+</ul>
+
+<!-- ============ 4 ============ -->
+<h2 id="routing">4. Routing structure</h2>
+<p>App Router uses <strong>folder-based routing</strong>: the folder path under <code>src/app/</code> is the URL, and a <code>page.jsx</code> file makes it publicly reachable.</p>
+
+<table>
+<tr><th>URL</th><th>Source</th><th>Notes</th></tr>
+<tr><td><code>/</code></td><td><code>src/app/page.jsx</code></td><td>The only page. Dynamic (SSR on every request).</td></tr>
+<tr><td>any other URL</td><td>built-in <code>_not-found</code></td><td>Auto-generated 404 (static HTML).</td></tr>
+</table>
+
+<div class="callout">
+  <p><strong>One route, many sections.</strong> The "pages" visitors see (Hero, Industries, Testimonials …) are scroll sections inside <code>/</code>, not separate URLs.</p>
+</div>
+
+<h3>Special files</h3>
+<table>
+<tr><th>File</th><th>Role</th></tr>
+<tr><td><code>layout.jsx</code></td><td>Wraps all pages. Persistent across navigation. Defines <code>&lt;html&gt;</code>/<code>&lt;body&gt;</code>, global CSS and <code>metadata</code> (title, description, icon) and <code>viewport</code>.</td></tr>
+<tr><td><code>page.jsx</code></td><td>The UI for a route.</td></tr>
+<tr><td><code>route.js</code></td><td>(not used yet) An API endpoint, e.g. <code>src/app/api/contact/route.js</code> → <code>/api/contact</code>.</td></tr>
+<tr><td><code>loading.jsx</code> / <code>error.jsx</code> / <code>not-found.jsx</code></td><td>(not used yet) Optional per-route loading, error, and 404 UI.</td></tr>
+</table>
+
+<h3>Render order</h3>
+<pre><code>RootLayout (server)
+ └─ Providers (client)       ← MotionConfig reducedMotion="user"
+     └─ HomePage (server)
+         ├─ Dust, Navbar
+         ├─ &lt;main&gt;: Hero, PointOfView, ProductStack, LatestUpdates, Clients,
+         │         Testimonials, Alliances, FeaturedBlogs, Industries,
+         │         WhyChooseUs, Recognitions, Winner, Connect
+         └─ Footer</code></pre>
+
+<!-- ============ 5 ============ -->
+<h2 id="rendering">5. Rendering: static vs SSR</h2>
+<p>By default Next.js <strong>prerenders</strong> a page with no dynamic data at build time (static, shown as <code>○</code> in build output). That page is still server-rendered HTML, but generated <em>once</em>. We changed this in <code>src/app/page.jsx</code>:</p>
+<pre><code>export const dynamic = 'force-dynamic'</code></pre>
+<p>Now the page is rendered <strong>on every request</strong> (shown as <code>ƒ</code> in build output).</p>
+
+<table>
+<tr><th></th><th>Static (<code>○</code>)</th><th>Dynamic SSR (<code>ƒ</code>) — current</th></tr>
+<tr><td>Rendered</td><td>Once, at build</td><td>On every request</td></tr>
+<tr><td>Response headers</td><td>Cacheable by CDN</td><td><code>Cache-Control: no-store</code></td></tr>
+<tr><td>Speed / cost</td><td>Fastest, cheapest</td><td>Uses server CPU per visit</td></tr>
+<tr><td>Per-request data (cookies, headers, live API)</td><td>No</td><td>Yes</td></tr>
+<tr><td>Hosting</td><td>Any static host possible</td><td>Needs a Node.js server (or Vercel etc.)</td></tr>
+</table>
+
+<div class="callout warn">
+  <p><strong>Trade-off to be aware of:</strong> the page currently has no per-request data, so <code>force-dynamic</code> adds server load without changing the output. Keep it if you plan to read cookies/headers or fetch live Drupal API data. Otherwise remove the line to get fast prerendering, or use <code>export const revalidate = 60</code> to regenerate every 60 seconds (ISR).</p>
+</div>
+
+<h3>Hydration and the mobile hook</h3>
+<p>The server cannot know the visitor's screen size. <code>useIsMobile</code> (<code>src/components/useIsMobile.js</code>) uses <code>useSyncExternalStore</code> with <code>false</code> as the server value, so the server always renders desktop markup and the client switches to the real value during hydration — without a hydration-mismatch error.</p>
+
+<!-- ============ 6 ============ -->
+<h2 id="commands">6. Running and building</h2>
+<table>
+<tr><th>Command</th><th>What it does</th><th>Use when</th></tr>
+<tr><td><code>npm install</code></td><td>Installs dependencies into <code>node_modules/</code></td><td>First checkout, or after dependency changes</td></tr>
+<tr><td><code>npm run dev</code></td><td>Dev server on <code>:3000</code> with hot reload. Always renders on demand.</td><td>Day-to-day development</td></tr>
+<tr><td><code>npm run build</code></td><td>Compiles an optimized production build into <code>.next/</code> and prints the route table</td><td>Before deploy / to test production behaviour</td></tr>
+<tr><td><code>npm start</code></td><td>Starts the production Node server from <code>.next/</code>. Does <strong>not</strong> rebuild.</td><td>Local production check; the server run command</td></tr>
+<tr><td><code>npm run lint</code></td><td>Runs ESLint</td><td>Before commits / in CI</td></tr>
+</table>
+
+<pre><code># Local production check
+npm run build
+npm start                 # http://localhost:3000
+npm start -- -p 3111      # use a different port</code></pre>
+
+<h3>What a build does</h3>
+<div class="flow">
+  <span>Compile JSX with Turbopack</span><i>→</i>
+  <span>Split into server &amp; client bundles</span><i>→</i>
+  <span>Decide static vs dynamic per route</span><i>→</i>
+  <span>Write everything to <code>.next/</code></span>
+</div>
+<p>Expected route table for this project:</p>
+<pre><code>Route (app)
+┌ ƒ /
+└ ○ /_not-found
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand</code></pre>
+
+<!-- ============ 7 ============ -->
+<h2 id="next-folder">7. The <code>.next/</code> folder</h2>
+<p><code>.next/</code> is a single, self-contained <strong>build artifact</strong> that holds the compiled app, the lookup tables the server needs, and some caches and debug data. It is fully regenerated by <code>npm run build</code> and is git-ignored. Never edit it by hand.</p>
+
+<h3>Folders</h3>
+<table>
+<tr><th>Path</th><th>What it contains</th><th>Needed at runtime?</th></tr>
+<tr><td><code>server/</code></td><td>Compiled server code: <code>server/app/page.js</code> (your home page), <code>server/chunks/</code> (shared code such as React, Next and your components), prebuilt <code>_not-found</code> and <code>_global-error</code> pages.</td><td><span class="tag yes">Yes</span></td></tr>
+<tr><td><code>static/</code></td><td>Files sent to the browser: <code>static/chunks/</code> (JS bundles for hydration and animations) and <code>static/media/</code> (fingerprinted font files). Served under <code>/_next/static/…</code></td><td><span class="tag yes">Yes</span></td></tr>
+<tr><td><code>cache/</code></td><td>Build cache (compile results, image-optimization output). Speeds up the <em>next</em> build; can also hold runtime fetch/ISR cache.</td><td><span class="tag no">No</span> safe to delete</td></tr>
+<tr><td><code>diagnostics/</code></td><td>Small JSON files with build info and warnings, for debugging/telemetry.</td><td><span class="tag no">No</span></td></tr>
+<tr><td><code>types/</code></td><td>Auto-generated TypeScript route types (typed links and page props). Mostly irrelevant here since the project uses JS.</td><td><span class="tag no">No</span></td></tr>
+<tr><td><code>trace</code>, <code>trace-build</code>, <code>turbopack/</code></td><td>Build performance traces and Turbopack's internal state.</td><td><span class="tag no">No</span></td></tr>
+<tr><td><code>dev/</code></td><td>Output of <code>npm run dev</code>, separate from the production build.</td><td><span class="tag no">No</span></td></tr>
+</table>
+
+<div class="callout ok">
+  <p><strong>Size reference (this project):</strong> <code>.next/</code> ≈ 68 MB, <code>public/</code> ≈ 18 MB, <code>node_modules/</code> ≈ 456 MB.</p>
+</div>
+
+<!-- ============ 8 ============ -->
+<h2 id="manifests">8. Manifest and JSON files</h2>
+<p>At startup the server reads these lookup tables instead of scanning your source code. They tell it which routes exist, which compiled file serves each, and which scripts a page needs.</p>
+<table>
+<tr><th>File</th><th>What it tells Next.js</th></tr>
+<tr><td><code>BUILD_ID</code></td><td>Unique ID of this build. Used in asset URLs for cache-busting so browsers never use stale files.</td></tr>
+<tr><td><code>routes-manifest.json</code></td><td>Every route and its URL pattern, plus redirects, rewrites and headers.</td></tr>
+<tr><td><code>app-path-routes-manifest.json</code><br><code>server/app-paths-manifest.json</code></td><td>Maps a URL (e.g. <code>/</code>) to its compiled file (<code>server/app/page.js</code>).</td></tr>
+<tr><td><code>build-manifest.json</code></td><td>Which JS/CSS files the browser needs per page; used to emit the right <code>&lt;script&gt;</code> tags.</td></tr>
+<tr><td><code>prerender-manifest.json</code></td><td>Which routes are static vs dynamic and any ISR revalidation settings. <code>/</code> is dynamic here.</td></tr>
+<tr><td><code>required-server-files.json</code> / <code>.js</code></td><td>The config and file list <code>next start</code> needs. Also drives <code>standalone</code> output.</td></tr>
+<tr><td><code>images-manifest.json</code></td><td>Settings for the <code>next/image</code> optimizer.</td></tr>
+<tr><td><code>server/page_client-reference-manifest.js</code></td><td>Links server-rendered output to the browser bundles of each Client Component (this is what makes hydration work).</td></tr>
+<tr><td><code>server/next-font-manifest.json</code>, <code>server-reference-manifest.json</code>, <code>middleware-manifest.json</code></td><td>Font lookups, Server Action references, and middleware config.</td></tr>
+<tr><td><code>*.nft.json</code> (e.g. <code>next-server.js.nft.json</code>)</td><td>"Node File Trace": the exact files each entry point depends on. Lets <code>standalone</code> copy only what is needed.</td></tr>
+<tr><td><code>export-marker.json</code>, <code>package.json</code></td><td>Small markers/flags about how the build was produced.</td></tr>
+</table>
+
+<!-- ============ 9 ============ -->
+<h2 id="deploy">9. Deploying to a server</h2>
+
+<h3>Option A — Standard Node server</h3>
+<div class="cols">
+  <div class="card">
+    <h3>Copy to the server</h3>
+    <ul>
+      <li><code>.next/</code> (build output)</li>
+      <li><code>public/</code></li>
+      <li><code>package.json</code> and <code>package-lock.json</code></li>
+      <li><code>next.config.mjs</code></li>
+      <li>Environment variables / <code>.env.local</code> (if any)</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Do <u>not</u> copy</h3>
+    <ul>
+      <li><code>node_modules/</code> (install fresh on the target)</li>
+      <li><code>src/</code> (not needed to run; keep it in git)</li>
+      <li><code>.next/cache</code>, <code>.next/dev</code>, <code>.next/diagnostics</code>, <code>.next/types</code>, <code>.next/trace*</code> (optional to skip)</li>
+    </ul>
+  </div>
+</div>
+<pre><code># on the server (Node ≥ 20.9)
+npm ci --omit=dev          # install production dependencies only
+npm start                  # or: npx next start -p 80</code></pre>
+
+<p>Alternatively, copy the source (without <code>node_modules</code> and <code>.next</code>) and run <code>npm ci &amp;&amp; npm run build &amp;&amp; npm start</code> on the server itself. This ensures the build happens on the same OS and Node version as production.</p>
+
+<h3>Option B — Standalone output (best for Docker)</h3>
+<p>Add this to <code>next.config.mjs</code>:</p>
+<pre><code>const nextConfig = {
+  reactStrictMode: true,
+  output: 'standalone',
+}</code></pre>
+<p>The build then creates <code>.next/standalone/</code>, a minimal folder containing only the dependencies actually needed. You must also copy the static assets next to it:</p>
+<pre><code>cp -r public .next/standalone/public
+cp -r .next/static .next/standalone/.next/static
+node .next/standalone/server.js        # PORT=3000 HOSTNAME=0.0.0.0 by default</code></pre>
+
+<h3>Option C — Vercel</h3>
+<p>Push the repo to Git and import it in Vercel. It runs the build and hosting for you. No server setup, and the SSR page runs as a serverless function.</p>
+
+<h3>Running in production</h3>
+<ul>
+  <li>Keep the process alive with a process manager (<strong>PM2</strong>, <strong>systemd</strong>) or a container.</li>
+  <li>Put <strong>Nginx</strong> (or a load balancer) in front for HTTPS, compression and port 80/443; proxy to <code>localhost:3000</code>.</li>
+  <li>Set <code>PORT</code> to change the listening port.</li>
+</ul>
+<pre><code>pm2 start npm --name harmoni -- start
+pm2 save</code></pre>
+
+<div class="callout warn">
+  <p><strong>SSR means this cannot be a plain static-file host.</strong> You cannot upload <code>.next/</code> to S3/Apache and expect it to work. A running Node.js process is required. (A static-only export would need <code>output: 'export'</code> and would remove SSR.)</p>
+</div>
+
+<!-- ============ 10 ============ -->
+<h2 id="verify">10. Verifying SSR works</h2>
+<ol>
+  <li><strong>Build output:</strong> <code>npm run build</code> should list <code>/</code> as <code>ƒ (Dynamic)</code>.</li>
+  <li><strong>View source:</strong> in the browser press <kbd>Cmd/Ctrl</kbd>+<kbd>U</kbd>. The page text (e.g. "Engineering the AI Enterprise") should be in the raw HTML, not an empty <code>&lt;div&gt;</code>.</li>
+  <li><strong>curl:</strong>
+<pre><code>curl -s localhost:3000 | grep "Engineering the AI Enterprise"
+curl -sI localhost:3000 | grep -i cache-control
+# → Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate</code></pre></li>
+</ol>
+<div class="callout">
+  <p>Use <code>npm run build &amp;&amp; npm start</code> for this check. In <code>npm run dev</code> everything renders on demand, so you cannot see the static-vs-dynamic difference.</p>
+</div>
+
+<!-- ============ 11 ============ -->
+<h2 id="extend">11. Extending the app</h2>
+<table>
+<tr><th>Goal</th><th>How</th></tr>
+<tr><td>New page <code>/about</code></td><td>Create <code>src/app/about/page.jsx</code>. It inherits the root layout automatically.</td></tr>
+<tr><td>Dynamic URL <code>/blog/my-post</code></td><td>Create <code>src/app/blog/[slug]/page.jsx</code>; the slug is available via the <code>params</code> prop.</td></tr>
+<tr><td>API endpoint</td><td>Create <code>src/app/api/&lt;name&gt;/route.js</code> exporting <code>GET</code>/<code>POST</code> functions.</td></tr>
+<tr><td>Per-page title/SEO</td><td>Export a <code>metadata</code> object (or <code>generateMetadata</code>) from that page.</td></tr>
+<tr><td>Fetch data on the server</td><td>Make the page <code>async</code> and <code>await fetch(...)</code> directly in the Server Component.</td></tr>
+<tr><td>Use state, effects, or animation</td><td>Put <code>'use client'</code> at the top of that component's file.</td></tr>
+<tr><td>Environment variables</td><td>Copy <code>.env.example</code> to <code>.env.local</code>. Only <code>NEXT_PUBLIC_*</code> variables reach the browser; all others stay server-only. (<code>NEXT_PUBLIC_DRUPAL_API_URL</code> is defined but not used yet.)</td></tr>
+</table>
+
+<!-- ============ 12 ============ -->
+<h2 id="gotchas">12. Gotchas and checklist</h2>
+
+<h3>Common pitfalls</h3>
+<ul>
+  <li><strong>"window is not defined":</strong> browser APIs were used during render. Move them into <code>useEffect</code> or <code>useSyncExternalStore</code>.</li>
+  <li><strong>Hydration mismatch warnings:</strong> server and client rendered different markup (e.g. branching on <code>window.innerWidth</code> during render). Follow the <code>useIsMobile</code> pattern.</li>
+  <li><strong><code>NEXT_PUBLIC_*</code> values are baked in at build time.</strong> Changing them requires a rebuild, not just a restart.</li>
+  <li><strong>CSS import order matters:</strong> <code>globals.css</code> → <code>custom.css</code> → <code>mobile.css</code> in <code>layout.jsx</code>.</li>
+  <li><strong>Turbopack root warning:</strong> the build may warn it picked <code>/Users/&lt;you&gt;</code> as the workspace root because of a stray <code>package-lock.json</code> in the home folder. Harmless; silence it by setting <code>turbopack.root</code> in <code>next.config.mjs</code> or removing that file.</li>
+  <li><strong>Large <code>public/</code> assets</strong> (18 MB of video/images) are served as-is. Put a CDN or Nginx cache in front for production traffic.</li>
+</ul>
+
+<h3>Pre-deploy checklist</h3>
+<table>
+<tr><th>✔</th><th>Item</th></tr>
+<tr><td>☐</td><td><code>npm run lint</code> passes</td></tr>
+<tr><td>☐</td><td><code>npm run build</code> succeeds and <code>/</code> shows <code>ƒ</code> (or <code>○</code> if intentionally static)</td></tr>
+<tr><td>☐</td><td>Tested locally with <code>npm start</code>, not only <code>npm run dev</code></td></tr>
+<tr><td>☐</td><td>Server runs Node ≥ 20.9</td></tr>
+<tr><td>☐</td><td>Environment variables set on the server (build-time ones set <em>before</em> building)</td></tr>
+<tr><td>☐</td><td><code>.next/</code> + <code>public/</code> + <code>package*.json</code> + <code>next.config.mjs</code> deployed (or <code>.next/standalone</code>)</td></tr>
+<tr><td>☐</td><td>Process manager (PM2/systemd/Docker) and reverse proxy (Nginx) configured with HTTPS</td></tr>
+<tr><td>☐</td><td>View-source check confirms server-rendered HTML</td></tr>
+</table>
+
+<footer>Harmoni.AI Next.js project · Next.js 16 / React 19 · Generated reference document</footer>
+</main>
+</div>
+</body>
+</html>

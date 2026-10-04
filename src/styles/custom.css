@@ -1,0 +1,243 @@
+.client-logo img {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+    margin: 0 10px;
+}
+.client-logo {
+    width: 101px;
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    gap: 8px;
+    g: 12px 0;
+    color: #d6d7dc;
+    opacity: .88;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    margin: 0 20px;
+}
+.marquee-track {
+    display: flex;
+    width: max-content;
+    transform: none !important;
+}
+.ally-box img {
+    max-width: 520px;
+    max-height: 80px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Alliance logo tiles, desktop. In the Figma (1920 frame) each tile is
+   367 x 150 with 100px between tiles and 238px from row to row. The build's
+   desktop layout runs at 1120/1519 of the Figma frame (container 1120px vs
+   1519px), so the tiles are scaled by the same factor to keep the same size
+   relative to the page: 270 x 110, 74px apart, 175px row pitch, and the
+   rows start 90px below the title (122px in the Figma). */
+@media (min-width: 769px) {
+  .alliances .section-title { margin-bottom: 90px; }
+  .ally-row { padding: 0; }
+  .ally-row + .ally-row { margin-top: 65px; }
+  .ally-box { width: 270px; height: 110px; margin: 0 74px 0 0; }
+  .ally-box img { width: 270px; height: 110px; max-width: none; max-height: none; object-fit: contain; }
+}
+.ind-icon {
+    width: 80px;
+    height: 80px;
+}
+/* HARMONI.AI wordmark above the footer (Figma): the letters are cut out in
+   the page colour and sit on a fade that runs from fully transparent at the
+   top of the letters to white at their baseline, so the word melts out of
+   the dark page into the white footer. The old block was solid #121116 and
+   showed as black patches either side of the H and the I. The fade stops are
+   sampled from the Figma (share of white at 10/29/48/68/87% of the height). */
+.wordmark {
+    background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, .02) 10%,
+      rgba(255, 255, 255, .12) 29%,
+      rgba(255, 255, 255, .29) 48%,
+      rgba(255, 255, 255, .53) 68%,
+      rgba(255, 255, 255, .84) 87%,
+      #fff 100%);
+    height: 50vw;
+    max-height: 160px;
+    position: relative;
+    overflow: hidden;
+}
+.wordmark h2 {
+    letter-spacing: -.02em;
+    color: var(--bg);
+    margin: 0;
+    font-size: 16.2vw;
+    font-weight: 800;
+    line-height: .74;
+    transform: translateY(3%);
+}
+/* Desktop: in Figma the word spans 2.6% -> 97.3% of the width (a small margin
+   either side of the H and the I) and the fade box is exactly as tall as the
+   capitals. */
+@media (min-width: 769px) {
+  .wordmark { height: calc(15.65vw * .727); max-height: none; }
+  .wordmark h2 { font-size: 15.65vw; }
+}
+
+.harmonia-title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(70px, 13vw, 190px);
+  font-weight: 800;
+  line-height: 0.85;
+  letter-spacing: -0.06em;
+
+  /* Top dark → middle gray → bottom white */
+  background: linear-gradient(
+    to bottom,
+    #15161a 0%,
+    #25262a 25%,
+    #77787b 55%,
+    #ffffff 100%
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.hero-media {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Hero head video. The clip is rendered on solid black with no alpha, so
+   KeyedVideo draws it through a WebGL shader that turns the black transparent
+   (see components/KeyedVideo.jsx). The old circular crop is gone: the video
+   plays full width, as in the Figma, and the page shows around the head. */
+.hero-orb {
+  position: absolute;
+  left: 50%;
+  aspect-ratio: auto;
+  overflow: visible;
+  border-radius: 0;
+  pointer-events: none;
+}
+
+.keyed-video { position: relative; width: 100%; height: 100%; }
+.keyed-video__canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; }
+.hero-orb .keyed-video__canvas { object-fit: contain; }
+.keyed-video__src {
+  position: absolute; left: 0; top: 0; width: 2px; height: 2px;
+  opacity: 0; pointer-events: none;
+}
+/* No WebGL: show the raw clip (black box) rather than nothing. */
+.keyed-video--fallback .keyed-video__canvas { display: none; }
+.keyed-video--fallback .keyed-video__src { position: static; width: 100%; height: 100%; opacity: 1; object-fit: contain; }
+
+.arrow-btn {
+  width: 30px; height: 30px; display: grid; place-items: center; border-radius: 4px; cursor: pointer;
+  background: none !important; color: #cfd0d5; border: 1px solid #282D33 !important; transition: all .25s var(--ease);
+}
+.arrow-btn svg { width: 16px; height: 16px; }
+.arrow-btn:hover { color: #fff; }
+
+/* Hover / focus: 1px rainbow rim (amber top-left -> sky -> blue -> violet
+   bottom-right) with a faint glow, as in the Figma hover state. Drawn on a
+   masked pseudo-element so it can fade in; the button face stays dark. */
+.arrow-btn { position: relative; }
+.arrow-btn::before {
+  content: ''; position: absolute; inset: -1px; border-radius: inherit; padding: 1px;
+  background: linear-gradient(135deg, #e6a04a 0%, #9fb6c8 38%, #4f8ff0 68%, #7a46f2 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0; pointer-events: none;
+  transition: opacity .25s var(--ease);
+}
+.arrow-btn:hover::before,
+.arrow-btn:focus-visible::before { opacity: 1; }
+.arrow-btn:hover,
+.arrow-btn:focus-visible {
+  border-color: transparent !important;
+  box-shadow: 0 0 7px rgba(110, 120, 240, .22), 0 0 4px rgba(230, 160, 74, .12);
+}
+.stack-card-wrap {
+    position: sticky;
+    height: 380px;
+    margin-bottom: 0px !important;
+}
+/* Desktop: 100px between the stacked product cards before they start to
+   overlap (Figma: ~137px at the 1920 frame, x 0.737 for this layout). The
+   cards still stick and slide over each other as you scroll. */
+@media (min-width: 769px) {
+  .stack .stack-card-wrap { margin-bottom: 100px !important; }
+  .stack .stack-card-wrap:last-child { margin-bottom: 0 !important; }
+  /* Spacer after the last card: gives it room to slide all the way up into
+     the stack and hold there before the section scrolls away (without it the
+     section ended first and dragged the 4th card off mid-travel). A separate
+     element is needed — sticky cards can't use their own margin for this. */
+  .stack-tail { height: 34vh; }
+}
+/* ---------- Featured Blogs (Figma hover + hero panel background) ----------
+   Hover: a 1px gradient rim — amber top-left, through a soft neutral and
+   sky blue, to violet and magenta bottom-right — plus a deeper drop shadow.
+   The cards stay in place (Figma doesn't lift them). The rim is painted as
+   a border-box background behind a transparent border, so it works with
+   the rounded, overflow-clipped cards. */
+.blog-hero,
+.blog-card {
+  --blog-rim: linear-gradient(135deg, #f2a865 0%, #b9ab9b 28%, #5b9be8 52%, #6d5cd8 76%, #cf3fa4 100%);
+  transition: box-shadow .35s var(--ease);
+}
+.blog-hero:hover,
+.blog-card:hover {
+  border-color: transparent;
+  background: linear-gradient(#141519, #141519) padding-box, var(--blog-rim) border-box;
+  box-shadow: 0 26px 54px rgba(0, 0, 0, .6);
+}
+/* Text panel of the large card: Figma shows a warm amber glow from the
+   top-left corner and a blue glow down the right side into the bottom-right
+   corner, over a near-black base. The supplied artwork can't be cropped to
+   that layout at this panel's proportions, so the glows are painted to
+   match the Figma colour field (sampled), with the existing grain on top. */
+.blog-hero .copy .grad {
+  background-image:
+    radial-gradient(78% 125% at 0% 0%, rgba(206, 164, 100, 1) 0%, rgba(160, 118, 62, .85) 30%, rgba(100, 70, 32, .55) 58%, rgba(52, 36, 16, .25) 80%, transparent 100%),
+    radial-gradient(62% 100% at 100% 52%, rgba(134, 184, 218, 1) 0%, rgba(80, 126, 194, .85) 30%, rgba(38, 70, 150, .55) 58%, rgba(20, 38, 100, .25) 80%, transparent 100%),
+    radial-gradient(60% 75% at 72% 100%, rgba(26, 54, 136, .8) 0%, transparent 85%) !important;
+  background-color: #111215;
+  background-size: 100% 100% !important;
+}
+
+/* ---------- Industries: scroll through the tabs, then move on (desktop) ----
+   The section is pinned for a scroll distance of one step per tab; scrolling
+   down walks Retail -> Distribution -> Healthcare -> Banking, and only after
+   the last tab does the page continue to the next section (and the reverse
+   on the way up). */
+@media (min-width: 769px) {
+  .section.ind-pin { padding: 0; }
+  .ind-pin .ind-sticky {
+    position: sticky; top: 0; height: 100vh; box-sizing: border-box;
+    padding-top: 88px; display: flex; align-items: center;
+  }
+  .ind-pin .ind-sticky > .container { width: min(var(--container), calc(100% - 268px)); }
+}
+
+/* Point of View glow: now positioned in the 100vh pinned stage rather than the
+   200vh section, so the offsets are doubled to keep the glows where they sat
+   when the section first pins. */
+.pov-sticky .glow-field::before { top: 36%; }
+.pov-sticky .glow-field::after { top: 16%; }

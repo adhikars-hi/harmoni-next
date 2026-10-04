@@ -1,0 +1,2441 @@
+/* =========================================================
+   SONATA HARMONI.AI — MOBILE LAYOUT
+   ---------------------------------------------------------
+   Import AFTER index.css and custom.css:
+
+     import './mobile.css'
+
+   This file changes mobile layout only. Desktop remains
+   controlled by index.css/custom.css.
+   ========================================================= */
+
+
+/* =========================================================
+   1. GLOBAL MOBILE FRAME
+   ========================================================= */
+
+@media (max-width: 768px) {
+  html,
+  body,
+  #root {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: hidden;
+  }
+
+  body {
+    font-size: 14px;
+  }
+
+  .container {
+    width: calc(100% - 32px);
+    max-width: none;
+    margin-inline: auto;
+  }
+
+  .section {
+    padding: 76px 0;
+  }
+
+  .eyebrow {
+    font-size: 13px;
+    padding-bottom: 10px;
+    letter-spacing: .015em;
+  }
+
+  .section-title {
+    font-size: clamp(32px, 9vw, 42px);
+    line-height: 1.08;
+    margin-top: 20px;
+  }
+
+  .section-title.center {
+    text-align: center;
+  }
+
+  .glow-btn {
+    --h: 34px;
+    height: var(--h);
+    padding: 0 15px;
+    font-size: 12px;
+  }
+
+  img,
+  canvas,
+  video {
+    max-width: 100%;
+  }
+
+
+  /* =======================================================
+     2. HEADER / NAVIGATION
+     ======================================================= */
+
+  .nav {
+    height: 64px;
+    position: relative;
+    z-index: 70;
+  }
+
+  .nav .container {
+    height: 64px;
+    width: calc(100% - 28px);
+    gap: 12px;
+  }
+
+  .logo {
+    min-width: 0;
+    gap: 5px;
+  }
+
+  .logo-mark {
+    width: 56px;
+    flex: 0 0 56px;
+  }
+
+  .logo-mark .word {
+    font-size: 14px;
+  }
+
+  .logo-mark .keys {
+    height: 14px;
+  }
+
+  .logo-mark .sub {
+    font-size: 5.5px;
+  }
+
+  .logo-tag {
+    max-width: 145px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 9px;
+  }
+
+  .burger {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    flex: none;
+  }
+
+  .burger svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .nav.open .nav-links {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 0;
+    padding: 8px 20px 20px;
+
+    background: rgba(0, 0, 0, .98);
+    border-top: 1px solid rgba(255,255,255,.08);
+
+    z-index: 80;
+  }
+
+  .nav.open .nav-item > button,
+  .nav.open .nav-item > a {
+    width: 100%;
+    justify-content: space-between;
+    padding: 13px 0;
+    font-size: 14px;
+  }
+
+  .nav.open .dropdown {
+    position: static;
+    min-width: 0;
+    margin: 0 0 6px;
+    padding: 4px 10px;
+    border: 0;
+    border-left: 1px solid rgba(255,255,255,.14);
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+    backdrop-filter: none;
+  }
+
+  .nav.open .dropdown a {
+    padding: 9px 4px;
+    font-size: 13px;
+  }
+
+
+  /* =======================================================
+     3. HERO
+     ======================================================= */
+
+  .hero {
+    height: 165vh;
+  }
+
+  .hero-sticky {
+    height: 100svh;
+    min-height: 620px;
+    overflow: hidden;
+  }
+
+  .hero-copy {
+    top: 11vh;
+    padding: 0 18px;
+  }
+
+  .hero-copy .sonata {
+    font-size: clamp(25px, 8vw, 34px);
+    line-height: 1;
+  }
+
+  .hero-copy .harmoni {
+    font-size: clamp(43px, 14vw, 68px);
+    line-height: .98;
+    margin: 7px 0 10px;
+    letter-spacing: 0;
+  }
+
+  .hero-copy .eng {
+    font-size: clamp(17px, 5.2vw, 23px);
+    line-height: 1.15;
+  }
+
+  .hero-copy .ent {
+    font-size: clamp(28px, 8.5vw, 40px);
+    line-height: 1.08;
+    margin-top: 3px;
+  }
+
+  .hero-orb {
+    width: min(92vw, 430px);
+    top: 53%;
+  }
+
+  .hero-tagline {
+    bottom: 8vh;
+    padding: 0 24px;
+    font-size: clamp(14px, 4.2vw, 18px);
+    line-height: 1.38;
+  }
+
+
+  /* =======================================================
+     4. POINT OF VIEW
+     ======================================================= */
+
+  .pov {
+    height: 145vh;
+    overflow: hidden;
+  }
+
+  .pov-sticky {
+    height: 100svh;
+    min-height: 620px;
+    align-items: center;
+  }
+
+  .pov .container {
+    width: calc(100% - 28px);
+  }
+
+  .pov-stage {
+    min-height: 430px;
+  }
+
+  .pov-slide {
+    padding-top: 20px;
+    padding-inline: 4px;
+  }
+
+  .pov-slide h2 {
+    font-size: clamp(29px, 9vw, 40px);
+    line-height: 1.13;
+  }
+
+  .pov-slide .sub {
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  .pov-slide p {
+    max-width: 100%;
+    margin-top: 24px;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .pov-slide p + p {
+    margin-top: 15px;
+  }
+
+  .pov .arrows {
+    gap: 7px;
+    font-size: 13px;
+  }
+
+  .pov .arrow-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+
+  /* =======================================================
+     5. PRODUCT / PLATFORM STACK
+     ======================================================= */
+
+  .stack {
+    padding: 54px 0 40px;
+  }
+
+  .stack-card-wrap {
+    height: 390px;
+    margin-bottom: 28px;
+  }
+
+  .stack-card {
+    grid-template-columns: 1fr;
+    height: 100%;
+    min-height: 0;
+
+    padding: 34px 24px;
+    gap: 14px;
+    align-content: center;
+
+    border-radius: 20px;
+  }
+
+  .stack-card h3 {
+    font-size: clamp(30px, 9vw, 42px);
+    line-height: 1.05;
+  }
+
+  .stack-card p {
+    max-width: 100%;
+    margin: 0 0 16px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .stack-card .glow-btn {
+    justify-self: start;
+  }
+
+
+  /* =======================================================
+     6. LATEST UPDATES
+     ======================================================= */
+
+  .updates-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 34px;
+  }
+
+  .update-card {
+    min-height: 0;
+    padding: 22px 18px 20px;
+    border-radius: 12px;
+  }
+
+  .tag {
+    font-size: 12px;
+  }
+
+  .update-card h4 {
+    font-size: 17px;
+    line-height: 1.25;
+    margin: 14px 0 15px;
+  }
+
+  .meta {
+    font-size: 10.5px;
+    margin-bottom: 18px;
+  }
+
+
+  /* =======================================================
+     7. CLIENTS
+     ======================================================= */
+
+  .clients {
+    padding: 68px 0 76px;
+  }
+
+  .clients .section-title {
+    margin-bottom: 28px;
+  }
+
+  .client-row {
+    padding: 8px 0;
+  }
+
+  .client-logo {
+    width: 108px;
+    flex: 0 0 108px;
+    height: 44px;
+    padding: 5px 0;
+    margin: 0 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 11px;
+  }
+
+  .client-logo img {
+    width: 100%;
+    height: 42px;
+    max-width: 104px;
+    object-fit: contain;
+    margin: 0;
+  }
+
+  .client-logo.caps {
+    font-size: 10px;
+  }
+
+  .client-logo.aws {
+    font-size: 16px;
+  }
+
+  .marquee {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .marquee-track {
+    width: max-content;
+    transform: none !important;
+  }
+
+
+  /* =======================================================
+     8. TESTIMONIALS
+     ======================================================= */
+
+  .testi {
+    padding: 68px 0 76px;
+    overflow: hidden;
+  }
+
+  .testi .section-title {
+    font-size: clamp(32px, 9vw, 40px);
+  }
+
+  .testi-viewport {
+    width: 100%;
+    height: 500px;
+    margin-top: 30px;
+    overflow: visible;
+  }
+
+  .testi-card {
+    width: calc(100vw - 32px);
+    max-width: none;
+    min-height: 470px;
+    height: auto;
+
+    padding: 82px 22px 24px;
+
+    border-radius: 18px;
+  }
+
+  .testi-card .quote-ico {
+    display: block !important;
+    position: absolute;
+
+    left: 18px;
+    top: 20px;
+
+    width: 46px;
+    height: 46px;
+
+    overflow: visible;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .testi-card blockquote {
+    font-size: 12.5px;
+    line-height: 1.52;
+    text-align: left;
+    overflow-wrap: break-word;
+    word-break: normal;
+  }
+
+  .testi-card .who {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+
+    margin-top: 17px;
+    padding-top: 12px;
+
+    font-size: 12px;
+    line-height: 1.45;
+    overflow-wrap: break-word;
+  }
+
+  .testi-nav {
+    margin-top: 8px;
+  }
+
+  .testi-nav .arrows {
+    gap: 8px;
+    font-size: 14px;
+  }
+
+  .testi-nav .arrow-btn {
+    width: 34px;
+    height: 34px;
+  }
+
+
+  /* =======================================================
+     9. ALLIANCES
+     ======================================================= */
+
+  .alliances {
+    padding: 60px 0 80px;
+    overflow: hidden;
+  }
+
+  .alliances .section-title {
+    margin-bottom: 28px;
+  }
+
+  .ally-row {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    padding: 8px 0;
+  }
+
+  .ally-box {
+    width: 180px;
+    min-width: 180px;
+    height: 76px;
+
+    margin: 0 8px 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ally-box img {
+    width: auto;
+    max-width: 160px;
+    max-height: 54px;
+    object-fit: contain;
+    margin-inline: auto;
+  }
+
+
+  /* =======================================================
+     10. BLOGS
+     ======================================================= */
+
+  .blog-hero {
+    margin-top: 28px;
+    grid-template-columns: 1fr;
+    min-height: 0;
+    border-radius: 14px;
+  }
+
+  .blog-hero .copy {
+    min-height: 260px;
+    padding: 28px 22px;
+  }
+
+  .blog-hero .img-ph {
+    min-height: 210px;
+    order: -1;
+  }
+
+  .blog-hero .copy h4 {
+    font-size: 19px;
+    line-height: 1.2;
+    margin: 14px 0 10px;
+  }
+
+  .blog-hero .copy p {
+    max-width: none;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 18px;
+  }
+
+  .blog-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .blog-card {
+    min-height: 230px;
+    padding: 22px 18px 18px;
+    border-radius: 12px;
+  }
+
+  .blog-card h4 {
+    font-size: 17px;
+    margin: 17px 0 9px;
+  }
+
+  .blog-card p {
+    font-size: 12.5px;
+    line-height: 1.45;
+  }
+
+
+  /* =======================================================
+     11. INDUSTRIES
+     ======================================================= */
+
+  .ind-body {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-top: 38px;
+    padding-left: 0;
+  }
+
+  .ind-list {
+    order: 1;
+  }
+
+  .ind-list button {
+    padding: 12px 0 10px;
+    font-size: 18px;
+    line-height: 1.25;
+  }
+
+  .ind-card {
+    order: 2;
+
+    width: 100%;
+    min-height: 320px;
+
+    padding: 24px 22px 24px;
+    border-radius: 14px;
+  }
+
+  .ind-icon {
+    width: 104px;
+    height: 104px;
+    margin: 0 auto 30px;
+  }
+
+  .ind-icon img {
+    width: 72px;
+    height: 62px;
+  }
+
+  .ind-card p {
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+
+  /* =======================================================
+     12. WHY CHOOSE US
+     ======================================================= */
+
+  .why {
+    overflow: hidden;
+  }
+
+  .why-stage {
+    height: 360px;
+    margin-top: 54px;
+  }
+
+  .why-card {
+    width: min(270px, calc(100vw - 56px));
+    height: 300px;
+
+    margin-left: calc(min(270px, calc(100vw - 56px)) / -2);
+
+    border-radius: 12px;
+  }
+
+  .why-card .body {
+    padding: 26px 24px 0;
+  }
+
+  .why-card h5 {
+    font-size: 22px;
+    margin-bottom: 13px;
+  }
+
+  .why-card p {
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .why-card .strip {
+    height: 44px;
+  }
+
+
+  /* =======================================================
+     13. RECOGNITIONS
+     ======================================================= */
+
+  .recog-visual {
+    height: 430px;
+  }
+
+  .recog-title {
+    bottom: 42px;
+    padding: 0 18px;
+    font-size: clamp(34px, 10vw, 48px);
+    line-height: 1.05;
+  }
+
+  .recog-band {
+    height: 330px;
+    margin-top: -50px;
+  }
+
+  .recog-track {
+    perspective: 900px;
+  }
+
+  .recog-card {
+    width: min(270px, calc(100vw - 52px));
+    height: 220px;
+
+    margin-left: calc(min(270px, calc(100vw - 52px)) / -2);
+    margin-top: -110px;
+
+    padding: 18px 16px;
+
+    font-size: 16px;
+    line-height: 1.38;
+  }
+
+  .recog-card b {
+    font-size: 18px;
+  }
+
+  .recog-card small {
+    font-size: 12px;
+  }
+
+
+  /* =======================================================
+     14. WINNER / LARGE IMAGE SECTION
+     ======================================================= */
+
+  .winner {
+    height: 620px;
+  }
+
+  .winner .img-ph {
+    inset: -35px 0;
+  }
+
+  .winner-copy {
+    left: 22px;
+    right: 22px;
+    width: auto;
+
+    transform: translateY(-50%);
+    transform-origin: center;
+  }
+
+  .winner-copy .there {
+    font-size: clamp(24px, 7vw, 31px);
+    white-space: normal;
+  }
+
+  .winner-copy .you {
+    font-size: clamp(92px, 28vw, 145px);
+    line-height: .78;
+    margin: 8px 0 0 -3px;
+  }
+
+  .winner-copy .move {
+    font-size: clamp(25px, 7.5vw, 34px);
+    margin-top: 10px;
+    padding-right: 0;
+  }
+
+  .lbb {
+    margin-top: 38px;
+    gap: 10px;
+    font-size: clamp(18px, 5.8vw, 25px);
+    white-space: normal;
+    line-height: 1.15;
+  }
+
+  .lbb .dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .join {
+    justify-content: flex-start;
+    gap: 14px;
+    margin-top: 34px;
+    font-size: 16px;
+  }
+
+
+  /* =======================================================
+     15. LET'S CONNECT / FORM
+     ======================================================= */
+
+  .connect {
+    padding: 76px 0 86px;
+  }
+
+  .connect .container {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .connect h2 {
+    font-size: clamp(36px, 10vw, 48px);
+    line-height: 1.05;
+  }
+
+  .connect h2 + p {
+    font-size: 17px;
+    line-height: 1.35;
+    margin-top: 13px;
+  }
+
+  .form {
+    grid-template-columns: 1fr;
+    gap: 11px;
+  }
+
+  .field.full,
+  .consent,
+  .form-actions,
+  .privacy,
+  .form-msg {
+    grid-column: 1;
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    min-height: 44px;
+    padding: 11px 13px;
+    font-size: 13px;
+  }
+
+  .field textarea {
+    height: 96px;
+  }
+
+  .field .ph {
+    left: 14px;
+    top: 12px;
+    font-size: 13px;
+  }
+
+  .field .caret {
+    right: 13px;
+  }
+
+  .consent {
+    font-size: 9.5px;
+    line-height: 1.45;
+    margin-top: 4px;
+  }
+
+  .form-actions {
+    margin-top: 8px;
+  }
+
+  .privacy {
+    font-size: 11.5px;
+    line-height: 1.4;
+    margin-top: 8px;
+  }
+
+
+  /* =======================================================
+     16. WORDMARK
+     ======================================================= */
+
+  .wordmark {
+    height: 28vw;
+    min-height: 88px;
+    max-height: 145px;
+  }
+
+  .wordmark h2 {
+    font-size: 21vw;
+    line-height: .74;
+  }
+
+
+  /* =======================================================
+     17. FOOTER
+     ======================================================= */
+
+  .footer {
+    padding: 26px 0 0;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .footer-about {
+    grid-column: auto;
+  }
+
+  .footer-about p {
+    max-width: 310px;
+    margin-top: 20px;
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+
+  .footer h6 {
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+
+  .footer li {
+    font-size: 13px;
+    margin-bottom: 9px;
+  }
+
+  .footer-rule {
+    margin: 26px 0 14px;
+  }
+
+  .socials {
+    justify-content: flex-start;
+    gap: 10px;
+    padding-bottom: 34px;
+  }
+
+  .socials a {
+    width: 29px;
+    height: 29px;
+  }
+
+  .subfooter {
+    padding: 16px 0 18px;
+    font-size: 10px;
+  }
+
+  .subfooter nav {
+    flex-wrap: wrap;
+    gap: 7px 12px;
+  }
+
+  .subfooter small {
+    font-size: 9.5px;
+    line-height: 1.45;
+  }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 560px) {
+  .container {
+    width: calc(100% - 28px);
+  }
+
+  .section {
+    padding: 68px 0;
+  }
+
+  .section-title {
+    font-size: clamp(30px, 9.5vw, 38px);
+  }
+
+  .hero-copy {
+    top: 10vh;
+    padding-inline: 14px;
+  }
+
+  .hero-orb {
+    width: min(96vw, 390px);
+    top: 54%;
+  }
+
+  .hero-tagline {
+    bottom: 7vh;
+    padding-inline: 18px;
+    font-size: 14px;
+  }
+
+  .pov-slide h2 {
+    font-size: clamp(28px, 9.5vw, 38px);
+  }
+
+  .stack-card-wrap {
+    height: 370px;
+  }
+
+  .stack-card {
+    padding: 30px 20px;
+  }
+
+  .client-logo {
+    width: 92px;
+    flex-basis: 92px;
+    height: 40px;
+    margin-inline: 6px;
+  }
+
+  .client-logo img {
+    max-width: 90px;
+    height: 38px;
+  }
+
+  .ally-box {
+    width: 160px;
+    min-width: 160px;
+    height: 70px;
+    margin-inline: 6px;
+  }
+
+  .ally-box img {
+    max-width: 142px;
+    max-height: 50px;
+  }
+
+  .testi-viewport {
+    height: 500px;
+    margin-top: 28px;
+  }
+
+  .testi-card {
+    width: calc(100vw - 28px);
+    min-height: 470px;
+    padding: 78px 19px 22px;
+  }
+
+  .testi-card .quote-ico {
+    left: 16px;
+    top: 19px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .testi-card blockquote {
+    font-size: 12.2px;
+    line-height: 1.5;
+  }
+
+  .testi-card .who {
+    font-size: 11.7px;
+  }
+
+  .ind-card {
+    min-height: 305px;
+    padding-inline: 19px;
+  }
+
+  .ind-icon {
+    width: 96px;
+    height: 96px;
+    margin-bottom: 26px;
+  }
+
+  .recog-visual {
+    height: 390px;
+  }
+
+  .winner {
+    height: 570px;
+  }
+
+  .winner-copy .you {
+    font-size: clamp(86px, 27vw, 130px);
+  }
+
+  .wordmark {
+    min-height: 78px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 400px) {
+  .container {
+    width: calc(100% - 24px);
+  }
+
+  .logo-tag {
+    max-width: 118px;
+    font-size: 8.5px;
+  }
+
+  .hero {
+    height: 155vh;
+  }
+
+  .hero-copy .sonata {
+    font-size: 24px;
+  }
+
+  .hero-copy .harmoni {
+    font-size: 42px;
+  }
+
+  .hero-copy .eng {
+    font-size: 16px;
+  }
+
+  .hero-copy .ent {
+    font-size: 28px;
+  }
+
+  .hero-orb {
+    width: 94vw;
+    top: 55%;
+  }
+
+  .hero-tagline {
+    font-size: 13px;
+    bottom: 6vh;
+  }
+
+  .pov {
+    height: 135vh;
+  }
+
+  .pov-slide p {
+    font-size: 13px;
+  }
+
+  .stack-card-wrap {
+    height: 350px;
+  }
+
+  .stack-card h3 {
+    font-size: 29px;
+  }
+
+  .stack-card p {
+    font-size: 12.5px;
+  }
+
+  .update-card h4 {
+    font-size: 16px;
+  }
+
+  .client-logo {
+    width: 82px;
+    flex-basis: 82px;
+    height: 36px;
+    margin-inline: 5px;
+  }
+
+  .client-logo img {
+    max-width: 80px;
+    height: 34px;
+  }
+
+  .ally-box {
+    width: 145px;
+    min-width: 145px;
+  }
+
+  .ally-box img {
+    max-width: 130px;
+    max-height: 46px;
+  }
+
+  .testi-viewport {
+    height: 515px;
+  }
+
+  .testi-card {
+    width: calc(100vw - 24px);
+    min-height: 490px;
+    padding: 75px 17px 20px;
+  }
+
+  .testi-card .quote-ico {
+    left: 14px;
+    top: 18px;
+    width: 42px;
+    height: 42px;
+  }
+
+  .testi-card blockquote {
+    font-size: 11.8px;
+    line-height: 1.48;
+  }
+
+  .testi-card .who {
+    font-size: 11.2px;
+  }
+
+  .ind-list button {
+    font-size: 17px;
+  }
+
+  .ind-card {
+    min-height: 290px;
+  }
+
+  .ind-icon {
+    width: 88px;
+    height: 88px;
+  }
+
+  .recog-band {
+    height: 300px;
+  }
+
+  .recog-card {
+    width: calc(100vw - 42px);
+    margin-left: calc((100vw - 42px) / -2);
+  }
+
+  .winner {
+    height: 530px;
+  }
+
+  .winner-copy {
+    left: 18px;
+    right: 18px;
+  }
+
+  .winner-copy .there {
+    font-size: 23px;
+  }
+
+  .winner-copy .you {
+    font-size: 82px;
+  }
+
+  .winner-copy .move {
+    font-size: 23px;
+  }
+
+  .lbb {
+    font-size: 17px;
+  }
+
+  .connect h2 {
+    font-size: 34px;
+  }
+
+  .wordmark h2 {
+    font-size: 20vw;
+  }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY / REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* =========================================================
+   FINAL MOBILE FIX — SECTION RHYTHM / CAROUSELS / FOOTER
+   ---------------------------------------------------------
+   These overrides are intentionally last so they override
+   the earlier mobile breakpoints without changing desktop.
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  /* ---------- GLOBAL SECTION RHYTHM ---------- */
+
+  .section {
+    padding-top: 44px;
+    padding-bottom: 44px;
+  }
+
+  .section-title {
+    margin-top: 0;
+  }
+
+  /* ---------- 1. HERO / BANNER -> POINT OF VIEW ---------- */
+
+  .hero {
+    /* The original mobile value of 165vh/155vh leaves a
+       large blank scroll area before Point of View. */
+    height: 118vh;
+  }
+
+  .hero-sticky {
+    height: 100svh;
+    min-height: 560px;
+  }
+
+  .hero-copy {
+    top: 8vh;
+  }
+
+  .hero-orb {
+    top: 51%;
+  }
+
+  .hero-tagline {
+    bottom: 5vh;
+  }
+
+  /* ---------- 2. POINT OF VIEW -> STACK ---------- */
+
+  .pov {
+    height: 112vh;
+    overflow: hidden;
+  }
+
+  .pov-sticky {
+    height: 100svh;
+    min-height: 560px;
+  }
+
+  .pov-stage {
+    min-height: 360px;
+  }
+
+  .pov-slide {
+    padding-top: 0;
+  }
+
+  .pov-slide p {
+    margin-top: 18px;
+  }
+
+  .pov-slide p + p {
+    margin-top: 12px;
+  }
+
+  .pov .arrows {
+    margin-top: 18px;
+  }
+
+  /* ---------- 3. STACK -> NEXT SECTION ---------- */
+
+  .stack {
+    padding-top: 32px;
+    padding-bottom: 28px;
+  }
+
+  .stack .section-title {
+    margin-bottom: 22px;
+  }
+
+  .stack-card-wrap {
+    height: 330px;
+    margin-bottom: 18px;
+  }
+
+  .stack-card {
+    min-height: 0;
+    padding: 26px 20px;
+    gap: 10px;
+  }
+
+  .stack-card p {
+    margin-bottom: 12px;
+  }
+
+  /* ---------- 4. CLIENT LOGOS ---------- */
+
+  .clients {
+    padding-top: 42px;
+    padding-bottom: 46px;
+  }
+
+  .clients .section-title {
+    margin-bottom: 22px;
+  }
+
+  .client-row {
+    padding: 6px 0;
+  }
+
+  .client-logo {
+    width: 132px;
+    flex: 0 0 132px;
+    height: 54px;
+    padding: 4px 0;
+    margin: 0 6px;
+  }
+
+  .client-logo img {
+    width: 124px;
+    max-width: 124px;
+    height: 50px;
+    object-fit: contain;
+  }
+
+  .client-logo.caps {
+    font-size: 11px;
+  }
+
+  .client-logo.aws {
+    font-size: 18px;
+  }
+
+  /* ---------- 5. TESTIMONIAL / CAROUSEL ---------- */
+
+  .testi {
+    padding-top: 42px;
+    padding-bottom: 26px;
+    overflow: visible;
+  }
+
+  .testi .section-title {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .testi-viewport {
+    height: 500px;
+    min-height: 500px;
+    margin-top: 22px;
+    overflow: visible;
+  }
+
+  .testi-card {
+    width: calc(100vw - 32px);
+    max-width: calc(100vw - 32px);
+    min-height: 470px;
+    height: auto;
+    padding: 74px 20px 20px;
+    box-sizing: border-box;
+  }
+
+  .testi-card blockquote {
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+
+  .testi-card .who {
+    margin-top: 14px;
+    padding-top: 11px;
+  }
+
+  .testi-nav {
+    margin-top: 8px;
+  }
+
+  /* Make the following section sit above any animated
+     side-card pixels instead of allowing visual overlap. */
+  .testi + .alliances {
+    position: relative;
+    z-index: 10;
+    margin-top: 0;
+    padding-top: 34px;
+    background: var(--bg, #191a1f);
+  }
+
+  /* ---------- 6. STRATEGIC AI ALLIANCES ---------- */
+
+  .alliances {
+    padding-top: 34px;
+    padding-bottom: 44px;
+    overflow: hidden;
+  }
+
+  .alliances .section-title {
+    margin: 0 0 20px;
+    text-align: center;
+    line-height: 1.12;
+  }
+
+  .ally-row {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    gap: 0;
+    padding: 4px 0;
+  }
+
+  .ally-box {
+    width: 170px;
+    min-width: 170px;
+    height: 72px;
+    margin: 0 6px 12px;
+    box-sizing: border-box;
+  }
+
+  .ally-box img {
+    width: auto;
+    max-width: 150px;
+    max-height: 52px;
+    object-fit: contain;
+  }
+
+  /* ---------- 7. INSIGHTS / BLOGS ---------- */
+
+  .blogs,
+  .insights {
+    padding-top: 34px !important;
+    padding-bottom: 44px !important;
+  }
+
+  .blogs .section-title,
+  .insights .section-title {
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+
+  .blog-hero {
+    margin-top: 20px;
+  }
+
+  .blog-grid {
+    margin-top: 10px;
+  }
+
+  /* ---------- INDUSTRY / STRATEGIC LOGIC ---------- */
+
+  .ind-body {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    margin-top: 26px;
+    padding-left: 0;
+  }
+
+  .ind-list button {
+    padding: 10px 0 9px;
+    font-size: 17px;
+  }
+
+  .ind-card {
+    width: 100%;
+    min-height: 280px;
+    padding: 22px 18px;
+  }
+
+  .ind-icon {
+    width: 82px;
+    height: 82px;
+    margin: 0 auto 18px;
+  }
+
+  .ind-card p {
+    margin-bottom: 12px;
+  }
+
+  /* ---------- 8. AWARDS / RECOGNITION IMAGE ---------- */
+
+  .recog-visual {
+    height: 360px;
+  }
+
+  .recog-visual .img-ph,
+  .recog-visual .img-ph img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .recog-visual .img-ph img {
+    object-fit: cover;
+    object-position: center 35%;
+  }
+
+  .recog-title {
+    bottom: 30px;
+  }
+
+  .recog-band {
+    height: 300px;
+    margin-top: -38px;
+  }
+
+  /* ---------- 9. WINNER IMAGE / HUMAN FACE ---------- */
+
+  .winner {
+    height: 520px;
+  }
+
+  .winner .img-ph {
+    inset: -20px 0;
+  }
+
+  .winner .img-ph img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 62% center;
+  }
+
+  .winner-copy {
+    left: 16px;
+    right: 16px;
+    width: auto;
+    top: 48%;
+  }
+
+  /* ---------- 10. FOOTER ---------- */
+
+  .wordmark {
+    height: 24vw;
+    min-height: 72px;
+    max-height: 110px;
+  }
+
+  .footer {
+    padding: 30px 0 0;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 22px;
+    align-items: start;
+  }
+
+  .footer-about {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .footer-about p {
+    max-width: none;
+    margin-top: 16px;
+  }
+
+  .footer h6 {
+    margin-bottom: 10px;
+  }
+
+  .footer ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  .footer li {
+    margin-bottom: 8px;
+    line-height: 1.35;
+  }
+
+  .footer-rule {
+    margin: 24px 0 14px;
+  }
+
+  .socials {
+    justify-content: flex-start;
+    padding-bottom: 28px;
+  }
+
+  .subfooter {
+    padding: 15px 0 18px;
+  }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 560px) {
+
+  .section {
+    padding-top: 38px;
+    padding-bottom: 38px;
+  }
+
+  .hero {
+    height: 116vh;
+  }
+
+  .hero-sticky,
+  .pov-sticky {
+    min-height: 540px;
+  }
+
+  .pov {
+    height: 108vh;
+  }
+
+  .pov-stage {
+    min-height: 340px;
+  }
+
+  .stack {
+    padding-top: 28px;
+    padding-bottom: 24px;
+  }
+
+  .stack-card-wrap {
+    height: 315px;
+    margin-bottom: 14px;
+  }
+
+  .stack-card {
+    padding: 22px 18px;
+  }
+
+  .client-logo {
+    width: 124px;
+    flex-basis: 124px;
+    height: 52px;
+  }
+
+  .client-logo img {
+    width: 116px;
+    max-width: 116px;
+    height: 48px;
+  }
+
+  .testi {
+    padding-top: 38px;
+    padding-bottom: 22px;
+  }
+
+  .testi-viewport {
+    height: 500px;
+    min-height: 500px;
+    margin-top: 20px;
+  }
+
+  .testi-card {
+    width: calc(100vw - 28px);
+    max-width: calc(100vw - 28px);
+    min-height: 470px;
+    padding: 72px 18px 18px;
+  }
+
+  .testi + .alliances {
+    padding-top: 28px;
+  }
+
+  .alliances {
+    padding-bottom: 36px;
+  }
+
+  .ally-box {
+    width: 155px;
+    min-width: 155px;
+    height: 68px;
+    margin-inline: 5px;
+  }
+
+  .ally-box img {
+    max-width: 140px;
+    max-height: 50px;
+  }
+
+  .blogs,
+  .insights {
+    padding-top: 28px !important;
+    padding-bottom: 36px !important;
+  }
+
+  .recog-visual {
+    height: 340px;
+  }
+
+  .winner {
+    height: 500px;
+  }
+
+  .winner .img-ph img {
+    object-position: 62% center;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px 18px;
+  }
+
+  .footer li {
+    font-size: 12.5px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+  .hero {
+    height: 114vh;
+  }
+
+  .pov {
+    height: 106vh;
+  }
+
+  .stack-card-wrap {
+    height: 300px;
+  }
+
+  .client-logo {
+    width: 116px;
+    flex-basis: 116px;
+    height: 50px;
+  }
+
+  .client-logo img {
+    width: 108px;
+    max-width: 108px;
+    height: 46px;
+  }
+
+  .testi-viewport {
+    height: 500px;
+    min-height: 500px;
+  }
+
+  .testi-card {
+    width: calc(100vw - 24px);
+    max-width: calc(100vw - 24px);
+    min-height: 470px;
+    padding: 70px 16px 16px;
+  }
+
+  .ally-box {
+    width: 145px;
+    min-width: 145px;
+  }
+
+  .recog-visual {
+    height: 320px;
+  }
+
+  .winner {
+    height: 480px;
+  }
+
+  .footer-top {
+    gap: 22px 14px;
+  }
+}
+
+
+/* =========================================================
+   FIGMA MOBILE SPEC  (frame 2184:1790 — 393 x 11202)
+   ---------------------------------------------------------
+   Values measured from the 2x design export. This block is
+   appended last so it is the authoritative mobile layer.
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  /* ---- Global frame ------------------------------------ */
+
+  /* Design gutter is 20px each side: content is 353px at 393. */
+  .container { width: calc(100% - 40px); }
+
+  /* Background grid measured at 43.4px in the design (240 lines over 10411px). */
+  :root { --grid-size: 43.4px; }
+
+  body { background: #1b1c1e; }
+
+  /* ---- Header ------------------------------------------ */
+
+  /* Black bar is exactly 56px tall; logo mark 52px wide. */
+  .nav, .nav .container { height: 56px; }
+  .nav .container { width: calc(100% - 40px); }
+
+  .logo { gap: 6px; }
+  .logo-mark { width: 52px; flex: 0 0 52px; }
+  .logo-mark .word { font-size: 12px; }
+  .logo-mark .keys { height: 11px; }
+  .logo-mark .sub { font-size: 4.6px; }
+  .logo-tag { max-width: 120px; font-size: 7.5px; line-height: 1.25; }
+
+  .burger { width: 26px; height: 26px; }
+  .burger svg { width: 20px; height: 20px; }
+
+  /* ---- Hero (static stack on mobile, see Hero.jsx) ------ */
+
+  .hero.hero--static {
+    height: auto;
+    min-height: 0;
+    padding: 93px 0 0;
+    text-align: center;
+  }
+
+  .hero--static .hero-copy {
+    position: static;
+    top: auto;
+    padding: 0 20px;
+    transform: none;
+    opacity: 1;
+  }
+
+  /* Sizes are set from the design's cap height; tracking is set so the rendered
+     ink width matches the design (its typeface is narrower than Inter). */
+  .hero--static .sonata { font-size: 37px; line-height: 1; letter-spacing: -.032em; font-weight: 200; }
+  .hero--static .harmoni { font-size: 60px; line-height: 1; letter-spacing: -.032em; margin: -5px 0 0; }
+  .hero--static .eng { font-size: 18px; line-height: 1; letter-spacing: .121em; font-weight: 300; margin-top: 0; }
+  .hero--static .ent { font-size: 30px; line-height: 1; letter-spacing: .048em; margin-top: 3px; font-weight: 300; }
+
+  /* Reserved space for the hero visual (the design shows an unfilled
+     stock-image placeholder spanning the container). */
+  .hero--static .hero-media {
+    position: static;
+    width: calc(100% - 40px);
+    height: 333px;
+    margin: 38px auto 0;
+    display: grid;
+    place-items: center;
+  }
+  .hero--static .hero-media canvas { width: 100%; height: 100%; }
+
+  .hero--static .hero-tagline {
+    position: static;
+    transform: none;
+    opacity: 1;
+    margin: 4px 0 0;
+    padding: 0 20px;
+    font-size: 15px;
+    line-height: 22.5px;
+    font-weight: 300;
+  }
+}
+
+@media (max-width: 768px) {
+
+  /* ---- Point of View ----------------------------------- */
+
+  /* Desktop drives the slide change from section scroll height; on mobile the
+     arrows do that, so the section collapses to its content. */
+  .pov { padding: 0; height: auto; min-height: 0; }
+  .pov .pov-sticky { position: static; height: auto; min-height: 0; }
+
+  /* Eyebrow: centred label, hairline 11px under it (design y852→873). */
+  .pov .eyebrow.center { display: block; text-align: center; }
+  .pov .eyebrow { font-size: 11px; padding-bottom: 11px; letter-spacing: 0; }
+
+  /* Hero tagline ends at 709; eyebrow ink starts at 852. */
+  .pov .container { padding-top: 136px; }
+
+  .pov-stage { min-height: 0; }
+  .pov-slide { padding-top: 0; }
+
+  /* Title: ink 26px, 33px leading, 37px below the hairline. */
+  .pov-slide h2 {
+    font-size: 26px;
+    line-height: 33px;
+    letter-spacing: -.01em;
+    margin: 37px 0 0;
+  }
+
+  /* Body: 14px / 20px leading, 30px under the title, 26px between paragraphs. */
+  .pov-slide p {
+    font-size: 14px;
+    line-height: 20px;
+    margin: 30px auto 0;
+    max-width: 336px;
+  }
+  .pov-slide p + p { margin-top: 26px; }
+  .pov-slide .sub { font-size: 14px; margin-top: 8px; }
+
+  /* Arrows sit 68px below the body, centred. */
+  .pov-nav { display: flex; justify-content: center; margin-top: 68px; padding-bottom: 0; }
+  .pov-nav .arrows { display: flex; align-items: center; gap: 10px; }
+}
+
+@media (max-width: 768px) {
+
+  /* ---- Product cards ----------------------------------- */
+  /* Design: four 400px cards, 353 wide, 41px apart, in normal flow. */
+
+  .stack { padding: 0; }
+  .stack .container { padding-top: 50px; }
+
+  .stack-card-wrap {
+    position: static;
+    height: auto;
+    margin-bottom: 41px;
+  }
+  .stack-card-wrap:last-child { margin-bottom: 0; }
+
+  .stack-card {
+    display: block;
+    height: 400px;
+    padding: 0 25px;
+    border-radius: 18px;
+    transform: none !important;
+    filter: none !important;
+    box-shadow: none;
+  }
+
+  /* Gradient artwork fills the top 135px of the card and fades into the card
+     body rather than ending on a hard edge. */
+  .stack-card .grad {
+    height: 160px;
+    bottom: auto;
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: no-repeat;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 62%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 0, #000 62%, transparent 100%);
+  }
+
+  /* The mobile design's pill buttons have no leading chevron. */
+  .glow-btn .chev { display: none; }
+  .glow-btn { padding: 0 18px; }
+
+  .stack-card h3 {
+    font-size: 20px;
+    line-height: 1;
+    margin: 147px 0 0;
+    font-weight: 200;
+  }
+  .stack-card h3 b {
+    display: block;
+    font-size: 26px;
+    line-height: 1;
+    margin-top: 14px;
+    font-weight: 700;
+  }
+
+  .stack-card p {
+    font-size: 14px;
+    line-height: 23px;
+    margin: 31px 0 0;
+    max-width: none;
+    color: #d7d8dd;
+  }
+
+  .stack-card .glow-btn { margin-top: 24px; }
+}
+
+@media (max-width: 768px) {
+
+  /* ---- Section heading rhythm (shared) ------------------ */
+  /* Design: eyebrow ink → 11px → hairline → 23px → title.   */
+
+  .section { padding: 0; }
+  .eyebrow { font-size: 11px; padding-bottom: 11px; letter-spacing: 0; }
+  .section-title { font-size: 28px; line-height: 1; margin-top: 18px; letter-spacing: -.01em; }
+
+  /* ---- Latest Updates ---------------------------------- */
+
+  .stack + .section .container { padding-top: 113px; }
+
+  .updates-grid {
+    grid-template-columns: 1fr;
+    gap: 17px;
+    margin-top: 26px;
+  }
+
+  .update-card {
+    height: 206px;
+    min-height: 0;
+    padding: 22px;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .update-card .tag { font-size: 13px; letter-spacing: 0; }
+
+  .update-card h4 {
+    font-size: 18px;
+    line-height: 24.5px;
+    margin: 16px 0 0;
+    font-weight: 300;
+  }
+
+  .update-card .meta {
+    font-size: 12px;
+    letter-spacing: 0;
+    margin: 20px 0 0;
+  }
+
+  .update-card .glow-btn { margin-top: 20px; align-self: flex-start; }
+}
+
+@media (max-width: 768px) {
+
+  /* ---- Our Clients ------------------------------------- */
+  /* Design: centred heading, then two marquee rows of ~24px logos, 64px apart. */
+
+  /* Only the heading container carries the top padding; the marquee
+     container below it must not repeat it. */
+  .clients > .container:first-of-type { padding-top: 49px; }
+  .clients > .container + .container { padding-top: 0; }
+  .clients .section-title { margin-top: 18px; margin-bottom: 0; }
+
+  /* The design shows two rows, not four. */
+  .clients .marquee:nth-of-type(n+3) { display: none; }
+
+  .clients .client-row { padding: 0; margin-top: 40px; }
+  .clients .client-row:first-of-type { margin-top: 41px; }
+  .client-logo { width: 128px; height: 24px; margin: 0 14px; }
+  .client-logo img { max-height: 24px; }
+
+  /* ---- Testimonials ------------------------------------ */
+
+  .testi { padding: 0; }
+  .testi .container { padding-top: 136px; }
+
+  /* Single card in normal flow (see Testimonials.jsx) so the viewport grows
+     with the quote; the design's own placeholder quote lands at 406px. */
+  .testi-viewport { height: auto; min-height: 0; margin-top: 26px; }
+
+  .testi-card.is-single {
+    position: relative;
+    top: auto; left: auto;
+    width: calc(100% - 40px);
+    max-width: none;
+    margin: 0 auto !important;
+    height: auto;
+    min-height: 406px;
+    padding: 150px 25px 24px;
+    border-radius: 18px;
+    background: rgba(22, 22, 26, .26);
+  }
+
+  .testi-card blockquote { font-size: 14px; line-height: 23px; text-align: justify; }
+  .testi-card .who { font-size: 14px; margin-top: 20px; padding-top: 14px; }
+  .testi-card .quote-ico { display: none !important; }
+
+  .testi-nav { margin-top: 30px; }
+
+  /* ---- Strategic AI Alliances -------------------------- */
+
+  .alliances { padding: 0; }
+  .alliances .container { padding-top: 102px; }
+  .alliances .section-title { margin-top: 18px; margin-bottom: 0; }
+
+  .alliances .ally-row { padding: 0; margin-top: 40px; }
+  .alliances .ally-row:first-of-type { margin-top: 43px; }
+  .ally-box { width: 132px; min-width: 132px; height: 44px; margin-right: 14px; border-radius: 6px; }
+  .ally-box img { max-height: 26px; }
+}
+
+@media (max-width: 768px) {
+  .testi .section-title { margin-top: 30px; }
+}
+
+@media (max-width: 768px) {
+
+  /* ---- Featured Blogs ---------------------------------- */
+  /* Design: four equal stacked cards with a full-bleed gradient, 19px apart. */
+
+  .blog-hero,
+  .blog-card {
+    display: block;
+    grid-template-columns: 1fr;
+    min-height: 0;
+    border-radius: 14px;
+    padding: 22px;
+    overflow: hidden;
+  }
+  .blog-hero { margin-top: 26px; }
+  .blog-hero .img-ph { display: none; }
+  .blog-hero .copy { padding: 0; }
+
+  .blog-grid { grid-template-columns: 1fr; gap: 19px; margin-top: 19px; }
+
+  .blog-hero .grad, .blog-card .grad { background-size: cover; background-position: center; }
+
+  .blog-hero .tag, .blog-card .tag { font-size: 13px; letter-spacing: 0; }
+
+  .blog-hero .copy h4,
+  .blog-card h4 {
+    font-size: 18px;
+    line-height: 24px;
+    margin: 16px 0 0;
+    font-weight: 300;
+  }
+
+  .blog-hero .copy p,
+  .blog-card p {
+    font-size: 14px;
+    line-height: 21px;
+    margin: 14px 0 0;
+    max-width: none;
+    padding-bottom: 0;
+  }
+
+  .blog-hero .glow-btn, .blog-card .glow-btn { margin-top: 20px; }
+
+  /* ---- Industries (accordion) -------------------------- */
+
+  .ind-accordion { margin-top: 26px; display: flex; flex-direction: column; gap: 10px; }
+
+  .ind-item {
+    background: #1e1f24;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .ind-item-head {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 30px 1fr 20px;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    padding: 18px 18px;
+    text-align: left;
+    color: #c9cad0;
+  }
+
+  .ind-num { font-family: var(--font-mono); font-size: 13px; color: #6f7077; }
+  .ind-item.open .ind-num { color: var(--accent-blue); }
+
+  .ind-label { font-size: 17px; font-weight: 300; line-height: 1.35; }
+  .ind-item.open .ind-label { color: #fff; }
+
+  .ind-chev { width: 16px; height: 16px; transition: transform .3s var(--ease); }
+  .ind-item.open .ind-chev { transform: rotate(180deg); }
+
+  /* Spectrum rule under the open item's header, as in the design. */
+  .ind-item.open .ind-item-head { padding-bottom: 14px; }
+  .ind-item.open .ind-item-body {
+    padding: 0 18px 20px;
+    border-top: 2px solid transparent;
+    border-image: var(--spectrum) 1;
+  }
+  .ind-item-body p {
+    font-size: 14px;
+    line-height: 23px;
+    margin: 18px 0 0;
+    color: #c2c3c9;
+  }
+  .ind-item-body .glow-btn { margin-top: 20px; }
+
+  /* ---- Why Choose Us ----------------------------------- */
+
+  .why { padding: 0; }
+  .why .container { padding-top: 112px; }
+  .why .section-title { margin-top: 18px; }
+
+  .why-stage { height: auto; margin-top: 30px; }
+
+  .why-card.is-single {
+    position: relative;
+    left: auto;
+    margin: 0 auto;
+    width: calc(100% - 40px);
+    height: 430px;
+    border-radius: 14px;
+    transform: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+  }
+  .why-card .body { padding: 42px 30px 0; }
+  .why-card h5 { font-size: 30px; font-weight: 300; margin-bottom: 22px; }
+  .why-card p { font-size: 16px; line-height: 26px; }
+  .why-card .strip { height: 70px; }
+}
+
+@media (max-width: 768px) {
+
+  /* ---- Industry Recognitions --------------------------- */
+  /* Design: full-bleed trophy band with the title over its lower edge, then a
+     single full-width award card — not the angled drum carousel. */
+
+  .recog-visual { height: 466px; }
+  .recog-title { font-size: 28px; bottom: 30px; }
+
+  .recog-band { height: auto; margin-top: 0; perspective: none; }
+  .recog-band .arcs { display: none; }
+
+  .recog-card.recog-single {
+    position: relative;
+    top: auto; left: auto;
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    min-height: 250px;
+    margin: 0;
+    padding: 34px 26px;
+    transform: none !important;
+    opacity: 1 !important;
+    border-radius: 0;
+    font-size: 18px;
+    line-height: 1.45;
+  }
+  .recog-single b { font-size: 21px; }
+  .recog-single small { font-size: 15px; }
+
+  /* ---- Winner ------------------------------------------ */
+  /* Design stacks the copy above the photograph instead of overlaying it. */
+
+  .winner { height: auto; padding: 0; }
+  .winner > div:first-child {
+    position: static !important;
+    transform: none !important;
+    order: 2;
+  }
+  .winner { display: flex; flex-direction: column; }
+  .winner .shade { display: none; }
+  .winner .img-ph { height: 430px; }
+
+  .winner-copy {
+    position: static;
+    transform: none;
+    width: auto;
+    order: 1;
+    padding: 46px 20px 34px;
+  }
+  .winner-copy .there { font-size: 24px; }
+  .winner-copy .you { font-size: 96px; line-height: .82; margin: 2px 0 0 -4px; }
+  .winner-copy .move { font-size: 24px; margin-top: 4px; }
+  .lbb { margin-top: 26px; gap: 8px; font-size: 16px; }
+  .join { margin-top: 26px; justify-content: flex-start; gap: 14px; font-size: 15px; }
+
+  /* ---- Let's Connect ----------------------------------- */
+
+  .connect { padding: 0; }
+  .connect .container { grid-template-columns: 1fr; gap: 0; padding-top: 56px; }
+  .connect h2 { font-size: 28px; }
+  .connect h2 + p { font-size: 15px; margin-top: 8px; }
+
+  .form { grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 30px; }
+  /* Design order: Your Name | Last Name, then one per row. */
+  .form .field:nth-of-type(1) { order: 1; }
+  .form .field:nth-of-type(3) { order: 2; }
+  .form .field:nth-of-type(2),
+  .form .field:nth-of-type(4),
+  .form .field:nth-of-type(5),
+  .form .field:nth-of-type(6) { order: 3; grid-column: 1 / -1; }
+  .form .field.full { order: 4; }
+  .consent { order: 5; }
+  /* The privacy line sits above the submit button in the design. */
+  .privacy { order: 6; margin-top: 18px; font-size: 12px; }
+  .form-actions { order: 7; margin-top: 18px; }
+  .form-msg { order: 8; }
+
+  .field input, .field select, .field textarea { padding: 13px 14px; font-size: 14px; }
+  .field .ph { top: 13px; font-size: 14px; }
+  .field textarea { height: 70px; }
+  .connect .glow-btn .chev { display: inline-block; }
+
+  /* ---- Wordmark + footer ------------------------------- */
+
+  .wordmark { height: 62px; min-height: 0; max-height: none; }
+  .wordmark h2 { font-size: 21vw; }
+
+  .footer { padding: 22px 0 0; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 26px 20px; }
+  .footer-about { grid-column: 1 / -1; }
+  .footer-about p { font-size: 14px; line-height: 21px; margin-top: 18px; max-width: none; }
+  .footer h6 { font-size: 13px; margin-bottom: 12px; }
+  .footer li { font-size: 13px; margin-bottom: 8px; }
+  .footer-rule { margin: 26px 0 14px; }
+  .socials { justify-content: flex-start; padding-bottom: 20px; gap: 10px; }
+  .subfooter { padding: 14px 0 18px; }
+}
+
+@media (max-width: 768px) {
+  /* Navbar renders the lockup as a single image; the design draws it at
+     134 x 37.5 inside the 56px bar. */
+  .logo-img { width: 134px; height: 37.5px; object-fit: contain; object-position: left center; display: block; }
+  .logo { gap: 0; }
+}
+
+@media (max-width: 768px) {
+  /* The photo sits in normal flow under the copy; ImagePlaceholder is absolute
+     by default, which collapsed the wrapper to zero height. */
+  .winner > div:first-child { order: 2; width: 100%; }
+  .winner .img-ph {
+    position: relative !important;
+    inset: auto !important;
+    height: 470px;
+    width: 100%;
+  }
+  .winner .img-ph img { height: 100%; width: 100%; object-fit: cover; }
+
+  /* Award card matches the design's 490px band. */
+  .recog-card.recog-single { min-height: 470px; display: grid; place-content: center; }
+
+  /* Blog cards run ~230px in the design. */
+  .blog-hero, .blog-card { padding: 20px; }
+  .blog-hero .copy h4, .blog-card h4 { margin-top: 12px; line-height: 23px; }
+  .blog-hero .copy p, .blog-card p { margin-top: 10px; line-height: 20px; }
+  .blog-hero .glow-btn, .blog-card .glow-btn { margin-top: 16px; }
+  .blog-grid { gap: 19px; margin-top: 19px; }
+}
+
+@media (max-width: 768px) {
+
+  /* ---- Recognitions: curved band edges ------------------ */
+  /* Shallow 23px arcs with a warm-to-cool hairline, top and bottom, as in the
+     design. The dark fill above/below trims the award card into the curve. */
+  .recog-band { position: relative; }
+  .recog-arc {
+    position: absolute;
+    left: 0; right: 0;
+    width: 100%;
+    height: 50px;
+    z-index: 3;
+    pointer-events: none;
+  }
+  .recog-arc-top { top: 0; }
+  .recog-arc-bottom { bottom: 0; }
+  .recog-card.recog-single { z-index: 1; }
+
+  /* ---- Featured Blogs: first card ----------------------- */
+  /* The hero card keeps its artwork inside .copy, so the padding has to live
+     on .copy — otherwise the gradient is inset and the card looks cropped. */
+  .blog-hero { padding: 0; border-color: rgba(255, 255, 255, .1); }
+  .blog-hero .copy { padding: 20px; }
+
+  /* ---- Testimonials: content-sized card ----------------- */
+  /* The design's placeholder quote is short; ours are long, so the big empty
+     top band made the card very tall. Keep a small, even inset instead. */
+  .testi-card.is-single {
+    padding: 40px 25px 28px;
+    min-height: 0;
+  }
+  .testi-card blockquote { line-height: 22px; }
+
+  /* ---- Product cards: breathing room under Know More ---- */
+  .stack-card { padding: 0 25px 24px; }
+  .stack-card p { margin-top: 28px; }
+  .stack-card .glow-btn { margin-top: 20px; }
+
+  /* ---- Connect form: full-width rows -------------------- */
+  /* An earlier single-column block pins these to column 1; the design's grid
+     is two columns for the name row only. */
+  .form .field.full,
+  .form .consent,
+  .form .form-actions,
+  .form .privacy,
+  .form .form-msg { grid-column: 1 / -1; }
+
+  .consent { font-size: 12px; line-height: 16px; gap: 12px; margin-top: 10px; }
+  .consent input { width: 16px; height: 16px; }
+  .privacy { font-size: 13px; margin-top: 34px; }
+  .form-actions { margin-top: 16px; }
+}
