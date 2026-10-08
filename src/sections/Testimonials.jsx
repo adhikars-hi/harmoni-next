@@ -5,7 +5,8 @@ import { motion } from 'framer-motion'
 import { DoubleChevron, SectionHead } from '../components/ui'
 import useIsMobile from '../components/useIsMobile'
 
-const QUOTES = [
+// Built-in copy, used when the CMS has no testimonials or can't be reached.
+const FALLBACK_QUOTES = [
   { q: 'Over the years as our business grew, so did our dependency on technology. We had invested in a lot of customization to our existing applications to automate our mission-critical functions. What we needed was a futuristic application, an all-encompassing one that would help us in digital transformation and set us up to win in a competitive landscape. We needed this to be done with minimal disruption to existing operations. Thanks to Sonata’s team the transformation was smooth, and we were able to go live in eight months. Moving to a Microsoft Dynamics 365 F & O cloud-based solution has helped us to transform, and we are able to engage with our ecosystem, experiencing cost benefits without compromising performance or reliability. Sonata’s Platformation methodology for platform-based transformation provided us with the insights and roadmap to leverage our technology investments.', who: '- Director IT, A Hospitality, Sporting & Recreational Equipment, and Retail company, USA' },
   { q: 'Thank you very much for your effort and the remarkable work. It was not easy and the team has worked very hard to reach the target.', who: '- IT Manager, A Fortune 500 Retail Company' },
   { q: 'Our new solar business unit needed an ERP system deployed within 60 days, and it needed to be cloud-based and turnkey since internal IT resources were limited. Additional time for business-process modeling was not an option. Despite these challenges, Sonata came through big time to meet our timeline requirements.', who: '- CIO, US Energy Firm' },
@@ -21,7 +22,8 @@ const QuoteIcon = () => (
   </svg>
 )
 
-export default function Testimonials() {
+export default function Testimonials({ quotes }) {
+  const QUOTES = quotes?.length ? quotes : FALLBACK_QUOTES
   const isMobile = useIsMobile()
   // current slide + direction, and the previous ones (to detect wrap-around)
   const [{ i, dir, pi, pdir }, setNav] = useState({ i: 0, dir: 1, pi: 0, pdir: 1 })

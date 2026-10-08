@@ -14,13 +14,12 @@ import Recognitions from '@/sections/Recognitions'
 import Winner from '@/sections/Winner'
 import Connect from '@/sections/Connect'
 import Footer from '@/sections/Footer'
+import { getHomeContent } from '@/lib/drupal'
 
-// Render on every request (SSR) instead of prerendering at build time.
-export const dynamic = 'force-dynamic'
-
-// Home page. This file is a Server Component; each section is a Client
+// Home page. This file is a Server Component and loads CMS content (Drupal); each section is a Client
 // Component ('use client') because it animates with Framer Motion.
-export default function HomePage() {
+export default async function HomePage() {
+  const cms = await getHomeContent()
   return (
     <>
       <Dust />
@@ -31,7 +30,7 @@ export default function HomePage() {
         <ProductStack />
         <LatestUpdates />
         <Clients />
-        <Testimonials />
+        <Testimonials quotes={cms.testimonials} />
         <Alliances />
         <FeaturedBlogs />
         <Industries />

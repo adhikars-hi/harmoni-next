@@ -56,6 +56,7 @@ harmoni-next/
 │   │   ├── layout.jsx          Root layout: <html>/<body>, metadata, fonts, global CSS
 │   │   ├── page.jsx            Home page: composes the sections in order
 │   │   └── providers.jsx       Client providers (Framer Motion reduced-motion config)
+│   ├── lib/             # Drupal client + mappers
 │   ├── sections/               One file per page section
 │   │   ├── Navbar.jsx  Hero.jsx  PointOfView.jsx  ProductStack.jsx
 │   │   ├── LatestUpdates.jsx  Clients.jsx  Testimonials.jsx  Alliances.jsx
@@ -106,13 +107,28 @@ ffmpeg -i new-clip.mov -an -c:v libx264 -preset slow -crf 28 \
 
 > **Before going live:** the current clip is an Adobe Stock *preview* with the watermark burned in. It must be licensed and replaced with the clean file (encoded as above).
 
+## Drupal CMS content
+
+The page reads content from the Drupal JSON:API at `{DRUPAL_API_URL}/jsonapi/node/home_page`. The fetch happens on the server in `src/app/page.jsx` (via `src/lib/drupal.js`), is cached and re-fetched every `DRUPAL_REVALIDATE` seconds (default 300), and the result is passed to sections as props.
+
+| CMS field (`data[0].attributes`) | Section | Prop |
+| --- | --- | --- |
+| `field_testimonials` | Testimonials | `quotes` → `[{ q, who }]` |
+
+Each `field_testimonials` item is an HTML string (`<figure class="testi-card">` with `<blockquote><p>` quote and `<figcaption class="who">` attribution). `mapTestimonials()` extracts only those two texts, decodes entities (`&amp;` etc.) and renders them as plain text. Surrounding markup (inline styles, SVG, `aria-hidden`) is ignored and no CMS HTML is injected into the page. Array order in Drupal is the slide order.
+
+If the CMS is down or returns no testimonials, the section falls back to the built-in copy in `Testimonials.jsx`, so the page never breaks. Test the mapping with `node scripts/test-drupal-mapping.mjs`.
+
+Fields on the same node not yet wired: `field_sonata_harmoni_ai_cards`, `field_our_point_of_view`, `field_body`, and the `field_our_clients` / `field_our_strategic_ai_alliances` logo files. Add each as a mapper in `src/lib/drupal.js` and a prop on its section.
+
 ## Environment variables
 
-Copy `.env.example` to `.env.local`. Only variables prefixed with `NEXT_PUBLIC_` are available in the browser.
+Copy `.env.example` to `.env.local`. These are read on the server only.
 
 | Variable | Notes |
 | --- | --- |
-| `NEXT_PUBLIC_DRUPAL_API_URL` | Carried over from the Vite project (`VITE_DRUPAL_API_URL`). No component reads it yet. |
+| `DRUPAL_API_URL` | Drupal base URL (default `https://devcms.sonata-software.com`). |
+| `DRUPAL_REVALIDATE` | Seconds between CMS re-fetches (default `300`). |
 
 ## Deployment
 
@@ -130,7 +146,7 @@ Copy `.env.example` to `.env.local`. Only variables prefixed with `NEXT_PUBLIC_`
 | `src/custom.css`, `src/mobile.css` | `src/styles/custom.css`, `src/styles/mobile.css` |
 | `src/sections/*`, `src/components/*` | Same files, now with `'use client'` |
 | `import logo from '../assets/sonata-blk-logo.png'` | `/brand/sonata-blk-logo.png` in `public/` |
-| `VITE_DRUPAL_API_URL` | `NEXT_PUBLIC_DRUPAL_API_URL` |
+| `VITE_DRUPAL_API_URL` | `DRUPAL_API_URL` (server-side) |
 | `npm run dev` → port 5173 | `npm run dev` → port 3000 |
 | `npm run preview` | `npm run start` |
 
