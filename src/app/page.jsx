@@ -2,6 +2,9 @@ import Dust from '@/components/Dust'
 import Navbar from '@/sections/Navbar'
 import Hero from '@/sections/Hero'
 import PointOfView from '@/sections/PointOfView'
+import AdvantageSonata from '@/sections/AdvantageSonata'
+import CoreCompetencies from '@/sections/CoreCompetencies'
+import AiPov from '@/sections/AiPov'
 import ProductStack from '@/sections/ProductStack'
 import LatestUpdates from '@/sections/LatestUpdates'
 import Clients from '@/sections/Clients'
@@ -27,11 +30,14 @@ export default async function HomePage() {
       <main>
         <Hero />
         <PointOfView />
+        <AdvantageSonata />
+        <CoreCompetencies />
+        <AiPov />
+        <Alliances />
         <ProductStack />
         <LatestUpdates />
         <Clients />
         <Testimonials quotes={cms.testimonials} />
-        <Alliances />
         <FeaturedBlogs />
         <Industries />
         <WhyChooseUs />
