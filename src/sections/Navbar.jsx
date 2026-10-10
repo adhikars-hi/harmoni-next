@@ -8,7 +8,7 @@ import { GlowButton } from '../components/ui'
 const logoImg = '/brand/sonata-blk-logo.png'
 
 export const Logo = () => (
-  <a href="#top" className="logo" aria-label="Sonata Software home">
+  <a href="/" className="logo" aria-label="Sonata Software home">
     <img 
       src={logoImg} 
       alt="Sonata Software" 
@@ -28,7 +28,7 @@ const MENU = [
 ]
 
 // Dropdown items that already have a page; everything else is still a placeholder.
-const LINKS = { Sustainability: '/sustainability', 'Data Modernization': '/data-modernization', Leadership: '/executive-leadership' }
+const LINKS = { 'Harmoni.AI': '/', Sustainability: '/sustainability', 'Data Modernization': '/data-modernization', Leadership: '/executive-leadership' }
 
 export default function Navbar() {
   const [open, setOpen] = useState(null)

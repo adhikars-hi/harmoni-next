@@ -29,7 +29,7 @@ const Defs = () => (
 )
 
 const FooterLogo = () => (
-  <a href="#top" className="ft-logo" aria-label="Sonata Software home">
+  <a href="/" className="ft-logo" aria-label="Sonata Software home">
     <span className="ft-mark">
       <span className="word">SONATA</span>
       <span className="keys">{Array.from({ length: 10 }, (_, i) => <i key={i} />)}</span>
