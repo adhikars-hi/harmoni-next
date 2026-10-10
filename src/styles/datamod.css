@@ -130,9 +130,9 @@
 }
 .dm-post .grain { position: absolute; inset: 0; z-index: -1; opacity: .3; mix-blend-mode: overlay; pointer-events: none; }
 /* Card backgrounds are cropped from the Figma export with the text removed (public/data-modernization). */
-.dm-post.amber { background: #fdd9b0 url('/data-modernization/insight-amber.webp') center / 100% 100% no-repeat; }
-.dm-post.sky { background: #5a6a7a url('/data-modernization/insight-sky.webp') center / 100% 100% no-repeat; }
-.dm-post.plum { background: #5c5370 url('/data-modernization/insight-plum.webp') center / 100% 100% no-repeat; }
+.dm-post.amber { background: #fdd9b0 url('/data-modernization/insight-amber-v2.webp') center / 100% 100% no-repeat; }
+.dm-post.sky { background: #5a6a7a url('/data-modernization/insight-sky-v2.webp') center / 100% 100% no-repeat; }
+.dm-post.plum { background: #5c5370 url('/data-modernization/insight-plum-v2.webp') center / 100% 100% no-repeat; }
 .dm-post:hover { transform: translateY(-4px); border-color: rgba(255, 255, 255, .7); box-shadow: 0 26px 54px rgba(0, 0, 0, .55); }
 .dm-post .dm-pill { padding: 3px 11px; border-color: #d8872a; background: rgba(240, 160, 64, .22); color: #f0a040; }
 .dm-post h3 { margin: 24px 0 0; font-size: 19px; font-weight: 400; line-height: 1.2; color: #fff; }
@@ -160,7 +160,7 @@
 /* FAQ glow: the Figma blob (image with transparent edges), centred behind the heading + accordion. */
 .dm-blob-faq {
   left: calc(50% + 1.27vw); top: calc(105px - 8.23vw); width: 55.6vw; aspect-ratio: 1449 / 1084; transform: translateX(-50%);
-  filter: none; background: url('/data-modernization/faq-glow.webp') center / 100% 100% no-repeat;
+  filter: none; background: url('/data-modernization/faq-glow-v2.webp') center / 100% 100% no-repeat;
 }
 .dm-blob-faq .grain { display: none; }
 
