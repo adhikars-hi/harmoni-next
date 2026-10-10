@@ -74,8 +74,10 @@
     radial-gradient(40% 52% at 28% 88%, rgba(176, 92, 8, .95) 0%, rgba(176, 92, 8, 0) 75%),
     radial-gradient(40% 70% at 86% 62%, rgba(18, 96, 240, .95) 0%, rgba(18, 96, 240, 0) 75%),
     radial-gradient(40% 40% at 60% 60%, rgba(130, 100, 90, .35) 0%, transparent 80%);
-  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 100%);
-          mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 86%, transparent 100%), linear-gradient(90deg, transparent 0%, #000 16%, #000 90%, transparent 100%);
+  -webkit-mask-composite: source-in;
+          mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 86%, transparent 100%), linear-gradient(90deg, transparent 0%, #000 16%, #000 90%, transparent 100%);
+          mask-composite: intersect;
 }
 
 /* ---------------- KEY FEATURES ---------------- */
@@ -141,6 +143,7 @@
 
 /* ---------------- FAQ ---------------- */
 .dm-faq { padding: 80px 0 100px; overflow: visible; }
+.dm-page { overflow-x: clip; }
 .dm-faq-head { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 .dm-faq-head .dm-h2 { max-width: none; }
 .dm-faq .dm-rule { margin: 12px 0 30px; }
@@ -156,16 +159,19 @@
 .dm-acc-item.open .caret { transform: rotate(180deg); }
 .dm-acc-body { overflow: hidden; }
 .dm-acc-body p { margin: 0; padding: 8px 12px 10px; border-top: 1px solid rgba(255, 255, 255, .08); font-size: 14px; line-height: 1.38; font-weight: 300; color: #c2c3ca; }
-/* FAQ background: same amber + blue glow as the "Our Solution" cards, centred behind the accordion. */
+/* FAQ background: same amber + blue glow as the "Our Solution" cards, centred behind the accordion.
+   Masked to fade on ALL four sides (vertical x horizontal) so no rectangular edge shows against the grid. */
 .dm-blob-faq {
-  left: 17%; right: 17%; top: 30px; bottom: -70px;
+  left: 8%; right: 8%; top: -20px; bottom: -120px;
   background:
-    radial-gradient(34% 22% at 50% 16%, rgba(236, 168, 70, .7) 0%, rgba(110, 120, 240, .55) 55%, transparent 100%),
-    radial-gradient(40% 52% at 24% 80%, rgba(176, 92, 8, .95) 0%, rgba(176, 92, 8, 0) 75%),
-    radial-gradient(40% 60% at 80% 66%, rgba(18, 96, 240, .95) 0%, rgba(18, 96, 240, 0) 75%),
-    radial-gradient(40% 40% at 52% 62%, rgba(130, 100, 90, .35) 0%, transparent 80%);
-  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 82%, transparent 100%);
-          mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 82%, transparent 100%);
+    radial-gradient(30% 20% at 50% 22%, rgba(236, 168, 70, .7) 0%, rgba(110, 120, 240, .55) 55%, transparent 100%),
+    radial-gradient(36% 46% at 28% 74%, rgba(176, 92, 8, .95) 0%, rgba(176, 92, 8, 0) 75%),
+    radial-gradient(36% 54% at 74% 64%, rgba(18, 96, 240, .95) 0%, rgba(18, 96, 240, 0) 75%),
+    radial-gradient(36% 36% at 52% 62%, rgba(130, 100, 90, .35) 0%, transparent 80%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 24%, #000 76%, transparent 100%), linear-gradient(90deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
+  -webkit-mask-composite: source-in;
+          mask-image: linear-gradient(180deg, transparent 0%, #000 24%, #000 76%, transparent 100%), linear-gradient(90deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
+          mask-composite: intersect;
 }
 
 /* ---------------- CONNECT (this page) ---------------- */
@@ -192,5 +198,5 @@
   .dm-pcard { min-height: 0; }
   .dm-stats { grid-template-columns: 1fr 1fr; }
   .dm-faq-head { flex-wrap: wrap; }
-  .dm-blob-faq { left: -10%; right: -10%; }
+  .dm-blob-faq { left: -10%; right: -10%; top: 0; }
 }
