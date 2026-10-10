@@ -28,7 +28,7 @@ const MENU = [
 ]
 
 // Dropdown items that already have a page; everything else is still a placeholder.
-const LINKS = { Sustainability: '/sustainability', 'Data Modernization': '/data-modernization' }
+const LINKS = { Sustainability: '/sustainability', 'Data Modernization': '/data-modernization', Leadership: '/executive-leadership' }
 
 export default function Navbar() {
   const [open, setOpen] = useState(null)
