@@ -1,3 +1,4 @@
+import Dust from '@/components/Dust'
 import Navbar from '@/sections/Navbar'
 import Connect from '@/sections/Connect'
 import Footer from '@/sections/Footer'
@@ -19,6 +20,7 @@ export const metadata = {
 export default function DataModernizationPage() {
   return (
     <div className="dm-page">
+      <Dust />
       <Navbar />
       <main>
         <Hero />
