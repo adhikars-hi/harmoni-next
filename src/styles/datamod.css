@@ -158,7 +158,8 @@
 .dm-acc-body p { margin: 0; padding: 8px 12px 10px; border-top: 1px solid rgba(255, 255, 255, .08); font-size: 14px; line-height: 1.38; font-weight: 300; color: #c2c3ca; }
 /* FAQ glow: the Figma blob (image with transparent edges), centred behind the heading + accordion. */
 .dm-blob-faq {
-  left: calc(50% + 1.27vw); top: calc(105px - 8.23vw); width: 55.6vw; aspect-ratio: 1449 / 1084; transform: translateX(-50%);
+  /* sized in px like the 1120px container (not vw), so it keeps its place behind the accordion at any desktop width */
+  left: calc(50% + 24px); top: -53px; width: 1068px; aspect-ratio: 1449 / 1084; transform: translateX(-50%);
   filter: none; background: url('/data-modernization/faq-glow-v2.webp') center / 100% 100% no-repeat;
 }
 .dm-blob-faq .grain { display: none; }
@@ -187,5 +188,5 @@
   .dm-pcard { min-height: 0; }
   .dm-stats { grid-template-columns: 1fr 1fr; }
   .dm-faq-head { flex-wrap: wrap; }
-  .dm-blob-faq { width: 130vw; top: 70px; }
+  .dm-blob-faq { width: 130vw; top: 70px; left: 50%; }
 }
