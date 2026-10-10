@@ -1,0 +1,192 @@
+/* =========================================================
+   DATA MODERNIZATION PAGE
+   Sizes are the Figma values x 0.737 (same scale as the home page).
+   ========================================================= */
+.dm-page {
+  --cyan: #1ed6f2; --dm-rim: linear-gradient(135deg, #f2a865 0%, #b9ab9b 28%, #5b9be8 52%, #6d5cd8 76%, #cf3fa4 100%);
+  position: relative; z-index: 1; background: #000; overflow-x: clip;
+}
+.dm-page main, .dm-page header, .dm-page footer { position: relative; z-index: 1; }
+
+.dm-sec { position: relative; padding: 82px 0; }
+.dm-eyebrow { margin: 0 0 8px; font-family: var(--font-mono); font-size: 15.5px; font-weight: 400; letter-spacing: .02em; text-transform: uppercase; color: var(--cyan); }
+.dm-eyebrow.strong { font-weight: 700; }
+.dm-h2 { margin: 0; max-width: 540px; font-size: clamp(30px, 2.3vw, 44px); font-weight: 200; line-height: 1.2; letter-spacing: -.01em; color: #e9e9f1; }
+.dm-lead { margin: 0; font-size: 14.7px; line-height: 1.3; font-weight: 400; letter-spacing: -.02em; color: #cfd0d6; }
+.dm-rule { border: 0; border-top: 1px solid #34353b; margin: 0; }
+
+/* shared card hover: 1px amber -> blue -> violet rim, same as the blog cards */
+.dm-card { --bg: #131419; background: var(--bg); border: 1px solid rgba(255, 255, 255, .1); transition: box-shadow .35s var(--ease), transform .35s var(--ease); }
+.dm-card:hover { border-color: transparent; background: linear-gradient(var(--bg), var(--bg)) padding-box, var(--dm-rim) border-box; box-shadow: 0 20px 44px rgba(0, 0, 0, .55); }
+
+/* ---------------- HERO ---------------- */
+.dm-hero { position: relative; overflow: hidden; background: #0e0e0e; min-height: 538px; display: flex; align-items: center; }
+.dm-hero-art { position: absolute; right: 0; top: 0; height: 100%; width: auto; max-width: 62%; object-fit: cover; object-position: left center; pointer-events: none; }
+.dm-hero-in { position: relative; z-index: 1; padding: 60px 0; }
+.dm-hero h1 { margin: 0; font-size: clamp(38px, 3.1vw, 59px); font-weight: 200; line-height: 1.2; letter-spacing: -.01em; color: #f1f1f6; }
+.dm-hero p { margin: 22px 0 0; font-size: 17.7px; font-weight: 300; color: #b9b9c2; }
+.dm-hero-cta { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 36px; }
+/* "Request a demo": outlined at rest, then identical to every other glow button on hover
+   (halo + chevron hop). Only the resting state differs (no halo, 1px outline). */
+.glow-btn.ghost { box-shadow: inset 0 0 0 1px #6b6c75; --glow-op: 0; transition: color .3s var(--ease), box-shadow .3s var(--ease); }
+.glow-btn.ghost:hover { box-shadow: none; }
+.glow-btn.ghost:hover::after { opacity: .78; filter: blur(calc(var(--glow-blur) * 1.3)); }
+
+/* ---------------- BUSINESS PROBLEM ---------------- */
+.dm-split { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+.dm-split .dm-lead { max-width: 365px; justify-self: end; margin: 38px 70px 0 0; }
+.dm-problem .dm-rule { margin: 32px 0 38px; }
+.dm-problem-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.dm-pcard { --bg: #131419; position: relative; min-height: 133px; padding: 20px 18px 16px; border-radius: 6px; overflow: hidden; }
+.dm-pcard::before {
+  content: ''; position: absolute; left: 0; right: 0; top: 0; height: 3px;
+  background: linear-gradient(90deg, #e8692a 0%, #2a80e8 55%, #8a3df0 100%);
+}
+.dm-num { display: inline-block; padding: 2px 5px; border-radius: 2px; background: #0c2a33; border: 1px solid #1a5a68; font-family: var(--font-mono); font-size: 8.8px; font-weight: 700; letter-spacing: .06em; color: var(--cyan); }
+.dm-pcard p { margin: 20px 0 0; font-size: 14.7px; line-height: 1.3; font-weight: 300; color: #e4e5ea; }
+.dm-note {
+  margin-top: 35px; padding: 24px; border-radius: 6px; background: #1a1b21; border: 1px solid #2d2f36;
+  font-size: 14px; line-height: 1.3; font-weight: 300; color: #c5c6cc;
+}
+
+/* ---------------- OUR SOLUTION ---------------- */
+.dm-solution { padding: 108px 0 76px; overflow: hidden; }
+.dm-sol-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 0.9fr 1fr; gap: 48px; align-items: center; }
+.dm-sol-copy .dm-h2 { max-width: 460px; }
+.dm-sol-copy .dm-lead { margin-top: 38px; max-width: 450px; }
+.dm-sol-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.dm-scard {
+  --bg: #15171f; padding: 16px; border-radius: 8px; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  background: rgba(18, 20, 28, .72); border-color: rgba(255, 255, 255, .22);
+}
+.dm-scard:hover { background: linear-gradient(#15171f, #15171f) padding-box, var(--dm-rim) border-box; }
+.dm-tag { font-family: var(--font-mono); font-size: 8.8px; font-weight: 700; letter-spacing: .04em; color: var(--cyan); }
+.dm-scard h3 { margin: 6px 0 0; font-size: 17.7px; font-weight: 400; line-height: 1.2; color: #fff; }
+.dm-scard p { margin: 8px 0 0; font-size: 13.3px; line-height: 1.45; font-weight: 300; color: #b5b6bd; }
+
+/* decorative glows (stand in for the Figma noise blobs) */
+.dm-blob { position: absolute; pointer-events: none; z-index: 0; filter: blur(14px); }
+.dm-blob .grain { position: absolute; inset: 0; opacity: .5; mix-blend-mode: overlay; }
+.dm-blob-sol {
+  left: 37%; right: -2%; top: 0; bottom: 0;
+  background:
+    radial-gradient(34% 22% at 50% 14%, rgba(236, 168, 70, .7) 0%, rgba(110, 120, 240, .55) 55%, transparent 100%),
+    radial-gradient(40% 52% at 28% 88%, rgba(176, 92, 8, .95) 0%, rgba(176, 92, 8, 0) 75%),
+    radial-gradient(40% 70% at 86% 62%, rgba(18, 96, 240, .95) 0%, rgba(18, 96, 240, 0) 75%),
+    radial-gradient(40% 40% at 60% 60%, rgba(130, 100, 90, .35) 0%, transparent 80%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 100%);
+          mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 100%);
+}
+
+/* ---------------- KEY FEATURES ---------------- */
+.dm-features { background: #111316; border-top: 1px solid #2a2c31; border-bottom: 1px solid #2a2c31; padding: 112px 0 74px; }
+.dm-features .dm-h2 { max-width: 520px; }
+.dm-feat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 48px; }
+.dm-fcard { --bg: #191c22; position: relative; min-height: 119px; padding: 15px; border-radius: 6px; }
+.dm-badge {
+  display: inline-grid; place-items: center; width: 19px; height: 19px; border-radius: 50%;
+  background: linear-gradient(135deg, #e8892a 0%, #3a8cc8 100%); font-family: var(--font-mono); font-size: 7.4px; font-weight: 700; color: #fff;
+}
+.dm-fcard p { margin: 14px 0 0; font-size: 14.7px; line-height: 1.22; font-weight: 400; color: #e8e8ee; }
+.dm-info { display: flex; align-items: center; gap: 12px; margin-top: 44px; padding: 20px 15px; border-radius: 6px; background: #191c22; border: 1px solid #2a2c33; }
+.dm-info svg { width: 15px; height: 15px; flex: none; color: var(--cyan); }
+.dm-info p { margin: 0; font-size: 14.7px; line-height: 1.3; font-weight: 300; color: #b9bac1; }
+
+/* ---------------- BENEFITS ---------------- */
+.dm-benefits { padding: 82px 0 78px; }
+.dm-ben-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 46px; }
+.dm-bcard { --bg: #111316; padding: 22px 18px 18px; border-radius: 8px; border-color: #2a2b30; min-height: 211px; }
+.dm-bcard b {
+  display: block; font-size: 47px; line-height: 1.2; font-weight: 600; letter-spacing: -.01em;
+  background: linear-gradient(90deg, #1a7de8 0%, #4a4ff0 55%, #7a2cf0 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.dm-meter { height: 2px; margin: 14px 0 16px; border-radius: 2px; background: #2e2f35; }
+.dm-meter i { display: block; height: 100%; border-radius: inherit; background: #eba8f0; }
+.dm-bcard p { margin: 0; font-size: 14px; line-height: 1.38; font-weight: 300; color: #d0d1d6; }
+
+/* ---------------- CLIENT SUCCESS STORIES ---------------- */
+.dm-stories { padding: 78px 0 78px; }
+.dm-story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 40px; }
+.dm-story { --bg: #121317; position: relative; padding: 24px; border-radius: 12px; border-color: rgba(255, 255, 255, .08); }
+.dm-story.violet { background: radial-gradient(70% 38% at 50% 108%, rgba(76, 34, 130, .6), transparent 100%), #121317; }
+.dm-story.blue { background: radial-gradient(70% 38% at 50% 108%, rgba(24, 70, 150, .55), transparent 100%), #121317; }
+.dm-story:hover { background: linear-gradient(#121317, #121317) padding-box, var(--dm-rim) border-box; }
+.dm-pill { display: inline-block; padding: 3px 11px; border-radius: 999px; border: 1px solid #7a5018; background: #2b1c0c; font-size: 8.8px; font-weight: 700; letter-spacing: .03em; color: #f0a040; }
+.dm-story h3 { margin: 20px 0 0; font-size: 22px; font-weight: 300; line-height: 1.27; color: #fff; }
+.dm-story p { margin: 14px 0 0; padding-bottom: 14px; border-bottom: 1px solid rgba(255, 255, 255, .1); font-size: 13.3px; line-height: 1.45; font-weight: 300; color: #b9bac1; }
+.dm-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 14px 0 22px; }
+.dm-stats div { padding: 6px 6px 5px; border-radius: 4px; background: #212428; }
+.dm-stats b { display: block; font-size: 16px; font-weight: 400; line-height: 1.2; color: #b8c4f0; }
+.dm-stats span { display: block; margin-top: 1px; font-size: 10.3px; font-weight: 400; color: #a9aab2; }
+
+/* ---------------- INSIGHTS ---------------- */
+.dm-insights { padding: 78px 0 80px; }
+.dm-insights .dm-rule { margin: 12px 0 36px; }
+.dm-post-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+.dm-post {
+  position: relative; isolation: isolate; overflow: hidden; min-height: 260px; padding: 30px 24px 22px 29px; border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, .4); display: flex; flex-direction: column; align-items: flex-start;
+  transition: box-shadow .35s var(--ease), transform .35s var(--ease), border-color .35s var(--ease);
+}
+.dm-post .grain { position: absolute; inset: 0; z-index: -1; opacity: .3; mix-blend-mode: overlay; pointer-events: none; }
+/* Card backgrounds are cropped from the Figma export with the text removed (public/data-modernization). */
+.dm-post.amber { background: #fdd9b0 url('/data-modernization/insight-amber.webp') center / 100% 100% no-repeat; }
+.dm-post.sky { background: #5a6a7a url('/data-modernization/insight-sky.webp') center / 100% 100% no-repeat; }
+.dm-post.plum { background: #5c5370 url('/data-modernization/insight-plum.webp') center / 100% 100% no-repeat; }
+.dm-post:hover { transform: translateY(-4px); border-color: rgba(255, 255, 255, .7); box-shadow: 0 26px 54px rgba(0, 0, 0, .55); }
+.dm-post .dm-pill { padding: 3px 11px; border-color: #d8872a; background: rgba(240, 160, 64, .22); color: #f0a040; }
+.dm-post h3 { margin: 24px 0 0; font-size: 19px; font-weight: 400; line-height: 1.2; color: #fff; }
+.dm-post p { margin: 14px 0 0; font-size: 13.6px; letter-spacing: -.01em; line-height: 1.38; font-weight: 300; color: #fff; }
+/* button follows the copy (Figma: same gap under 3- and 4-line text), not pinned to the card bottom */
+.dm-post .glow-btn { margin-top: 20px; align-self: flex-start; }
+
+/* ---------------- FAQ ---------------- */
+.dm-faq { padding: 80px 0 100px; overflow: visible; }
+.dm-faq-head { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.dm-faq-head .dm-h2 { max-width: none; }
+.dm-faq .dm-rule { margin: 12px 0 30px; }
+.dm-orange-pill { padding: 4px 12px; border-radius: 999px; background: #f7931e; font-size: 8.8px; font-weight: 700; letter-spacing: .04em; color: #a85c0c; }
+.dm-acc { position: relative; z-index: 1; width: min(660px, 100%); margin: 0 auto; display: grid; gap: 6px; }
+.dm-acc-item { border-radius: 6px; background: #0d0f15; border: 1px solid rgba(255, 255, 255, .2); overflow: hidden; transition: border-color .3s var(--ease); }
+.dm-acc-item:hover, .dm-acc-item.open { border-color: rgba(255, 255, 255, .4); }
+.dm-acc-item button {
+  width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 12px; min-height: 42px;
+  border: 0; background: transparent; cursor: pointer; text-align: left; font: inherit; font-size: 14.7px; font-weight: 600; color: #fff;
+}
+.dm-acc-item .caret { width: 14px; height: 14px; flex: none; color: #c3c4ca; transition: transform .35s var(--ease); }
+.dm-acc-item.open .caret { transform: rotate(180deg); }
+.dm-acc-body { overflow: hidden; }
+.dm-acc-body p { margin: 0; padding: 8px 12px 10px; border-top: 1px solid rgba(255, 255, 255, .08); font-size: 14px; line-height: 1.38; font-weight: 300; color: #c2c3ca; }
+/* FAQ glow: the Figma blob (image with transparent edges), centred behind the heading + accordion. */
+.dm-blob-faq {
+  left: calc(50% + 1.27vw); top: calc(105px - 8.23vw); width: 55.6vw; aspect-ratio: 1449 / 1084; transform: translateX(-50%);
+  filter: none; background: url('/data-modernization/faq-glow.webp') center / 100% 100% no-repeat;
+}
+.dm-blob-faq .grain { display: none; }
+
+/* ---------------- CONNECT (this page) ---------------- */
+.dm-connect { position: relative; z-index: 1; padding-top: 60px; }
+.connect-preface { margin: 0 0 22px; font-size: 17.7px; font-weight: 300; line-height: 1.25; color: #d8d9df; max-width: 300px; }
+
+/* ---------------- RESPONSIVE ---------------- */
+@media (max-width: 1100px) {
+  .dm-hero-art { max-width: 80%; opacity: .55; }
+  .dm-split, .dm-sol-grid { grid-template-columns: 1fr; }
+  .dm-split .dm-lead { justify-self: start; margin-right: 0; max-width: 520px; }
+  .dm-problem-grid { grid-template-columns: repeat(2, 1fr); }
+  .dm-feat-grid, .dm-ben-grid { grid-template-columns: repeat(2, 1fr); }
+  .dm-story-grid { grid-template-columns: 1fr; }
+  .dm-post-grid { grid-template-columns: 1fr; }
+  .dm-blob-sol { left: 10%; }
+}
+@media (max-width: 768px) {
+  .dm-sec { padding: 56px 0; }
+  .dm-hero { min-height: 0; }
+  .dm-hero-in { padding: 64px 0 56px; }
+  .dm-hero p { font-size: 15px; }
+  .dm-problem-grid, .dm-feat-grid, .dm-ben-grid, .dm-sol-cards { grid-template-columns: 1fr; }
+  .dm-pcard { min-height: 0; }
+  .dm-stats { grid-template-columns: 1fr 1fr; }
+  .dm-faq-head { flex-wrap: wrap; }
+  .dm-blob-faq { width: 130vw; top: 70px; }
+}

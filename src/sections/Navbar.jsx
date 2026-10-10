@@ -19,13 +19,16 @@ export const Logo = () => (
 
 const MENU = [
   ['AI Solutions', ['Harmoni.AI', 'Migration Studio', 'AgentBridge™', 'Spina']],
-  ['Services', ['Consulting', 'Engineering', 'Managed Services', 'Customer Experience']],
+  ['Services', ['Consulting', 'Engineering', 'Data Modernization', 'Managed Services', 'Customer Experience']],
   ['Industries', ['Retail', 'Distribution', 'Healthcare & Life Science', 'Banking, Financial Services & Insurance']],
   ['Investors', ['Financials', 'Annual Reports', 'Shareholder Info']],
   ['Alliances', ['Microsoft', 'AWS', 'Google Cloud', 'AI Partners']],
   ['Insights', ['Blogs', 'Case Studies', 'Whitepapers']],
-  ['About Us', ['Our Story', 'Leadership', 'Careers', 'Investor Relations']],
+  ['About Us', ['Our Story', 'Leadership', 'Sustainability', 'Careers', 'Investor Relations']],
 ]
+
+// Dropdown items that already have a page; everything else is still a placeholder.
+const LINKS = { Sustainability: '/sustainability', 'Data Modernization': '/data-modernization' }
 
 export default function Navbar() {
   const [open, setOpen] = useState(null)
@@ -46,7 +49,7 @@ export default function Navbar() {
                   <motion.div className="dropdown"
                     initial={{ opacity: 0, y: 8, scale: .98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 6, scale: .98 }}
                     transition={{ duration: .22, ease: [0.22, 1, 0.36, 1] }}>
-                    {items.map((it) => <a key={it} href="#">{it}</a>)}
+                    {items.map((it) => <a key={it} href={LINKS[it] || '#'}>{it}</a>)}
                   </motion.div>
                 )}
               </AnimatePresence>

@@ -13,7 +13,7 @@ const Field = ({ name, label, required, type = 'text', full, textarea }) => (
   </div>
 )
 
-export default function Connect() {
+export default function Connect({ className = '', preface = null, subtitle = 'Let’s start the journey, together.', submitLabel = 'SUBMIT', buttonClass = '' }) {
   const [msg, setMsg] = useState(null)
   const [type, setType] = useState('')
   const onSubmit = (e) => {
@@ -26,11 +26,12 @@ export default function Connect() {
     e.currentTarget.reset(); setType('')
   }
   return (
-    <section className="connect" id="connect">
+    <section className={`connect ${className}`} id="connect">
       <div className="container">
         <div>
+          {preface && <Reveal as="p" className="connect-preface">{preface}</Reveal>}
           <Reveal as="h2">Let’s Connect</Reveal>
-          <Reveal as="p" delay={.1}>Let’s start the journey, together.</Reveal>
+          {subtitle && <Reveal as="p" delay={.1}>{subtitle}</Reveal>}
         </div>
         <Reveal delay={.15}>
           <form className="form" onSubmit={onSubmit} noValidate>
@@ -51,7 +52,7 @@ export default function Connect() {
               <input type="checkbox" name="sms" />
               <span>OPTIONAL: I agree to receive text messages from Sonata Software regarding my inquiry, requested services, consultations, events, webinars, product updates, and other relevant business communications. Message frequency varies. Message and data rates may apply. Reply HELP for help or STOP to cancel. Consent is not a condition of purchase. View our Privacy Policy and Terms &amp; Conditions.</span>
             </label>
-            <div className="form-actions"><GlowButton size="lg" type="submit">SUBMIT</GlowButton></div>
+            <div className="form-actions"><GlowButton size="lg" type="submit" className={buttonClass}>{submitLabel}</GlowButton></div>
             <AnimatePresence>
               {msg && (
                 <motion.div className={`form-msg ${msg.err ? 'err' : ''}`} role="status"
