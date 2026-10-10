@@ -128,14 +128,13 @@
   border: 1px solid rgba(255, 255, 255, .4); display: flex; flex-direction: column; align-items: flex-start;
   transition: box-shadow .35s var(--ease), transform .35s var(--ease), border-color .35s var(--ease);
 }
-.dm-post .grain { position: absolute; inset: 0; z-index: -1; opacity: .3; mix-blend-mode: overlay; pointer-events: none; }
-/* Card backgrounds are cropped from the Figma export with the text removed (public/data-modernization). */
-.dm-post.amber { background: #fdd9b0 url('/data-modernization/insight-amber-v2.webp') center / 100% 100% no-repeat; }
-.dm-post.sky { background: #5a6a7a url('/data-modernization/insight-sky-v2.webp') center / 100% 100% no-repeat; }
-.dm-post.plum { background: #5c5370 url('/data-modernization/insight-plum-v2.webp') center / 100% 100% no-repeat; }
+/* Card backgrounds are cropped from the Figma export with the text removed (public/data-modernization); the film grain is already in the image, so no extra grain layer. */
+.dm-post.amber { background: #fdd9b0 url('/data-modernization/insight-amber-v3.webp') center / 100% 100% no-repeat; }
+.dm-post.sky { background: #5a6a7a url('/data-modernization/insight-sky-v3.webp') center / 100% 100% no-repeat; }
+.dm-post.plum { background: #5c5370 url('/data-modernization/insight-plum-v3.webp') center / 100% 100% no-repeat; }
 .dm-post:hover { transform: translateY(-4px); border-color: rgba(255, 255, 255, .7); box-shadow: 0 26px 54px rgba(0, 0, 0, .55); }
 .dm-post .dm-pill { padding: 3px 11px; border-color: #d8872a; background: rgba(240, 160, 64, .22); color: #f0a040; }
-.dm-post h3 { margin: 24px 0 0; font-size: 19px; font-weight: 400; line-height: 1.2; color: #fff; }
+.dm-post h3 { margin: 24px 0 0; font-size: 17px; font-weight: 400; line-height: 1.2; color: #fff; }
 .dm-post p { margin: 14px 0 0; font-size: 13.6px; letter-spacing: -.01em; line-height: 1.38; font-weight: 300; color: #fff; }
 /* button follows the copy (Figma: same gap under 3- and 4-line text), not pinned to the card bottom */
 .dm-post .glow-btn { margin-top: 20px; align-self: flex-start; }

@@ -1,6 +1,6 @@
 'use client'
 
-import { Grain, GlowButton, Reveal } from '../../components/ui'
+import { GlowButton, Reveal } from '../../components/ui'
 import Eyebrow from './Eyebrow'
 
 const POSTS = [
@@ -19,7 +19,6 @@ export default function Insights() {
         <div className="dm-post-grid">
           {POSTS.map((p, i) => (
             <Reveal key={p.t} delay={i * 0.1} className={`dm-post ${p.tone}`}>
-              <Grain />
               <span className="dm-pill">{p.tag}</span>
               <h3>{p.t}</h3>
               <p>{p.d}</p>
