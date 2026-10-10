@@ -6,7 +6,7 @@
   --cyan: #1ed6f2; --dm-rim: linear-gradient(135deg, #f2a865 0%, #b9ab9b 28%, #5b9be8 52%, #6d5cd8 76%, #cf3fa4 100%);
   position: relative; z-index: 1; overflow-x: clip; /* no solid fill: the site-wide grid + dust (body::before / <Dust/>) show through, as on the home page */
 }
-.dm-page main, .dm-page header, .dm-page footer { position: relative; z-index: 1; }
+.dm-page main, .dm-page footer { position: relative; z-index: 1; }
 
 .dm-sec { position: relative; padding: 82px 0; }
 .dm-eyebrow { margin: 0 0 8px; font-family: var(--font-mono); font-size: 15.5px; font-weight: 400; letter-spacing: .02em; text-transform: uppercase; color: var(--cyan); }

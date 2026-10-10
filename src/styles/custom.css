@@ -528,3 +528,10 @@
   .ft-copy { padding: 20px 0; }
   .ft-copy small { font-size: 12px; }
 }
+
+/* Header sits above the page content so its dropdowns are not painted over by <main>
+   (header and main were both z-index:1, and main comes later in the DOM). */
+header.nav { position: relative; z-index: 100; }
+/* Dropdown starts flush under the nav item (no dead gap), so the pointer can travel from the label into the menu. */
+.nav-item .dropdown { top: 100%; padding-top: 10px; }
+.nav-item > button, .nav-item > a { padding: 32px 0; }
